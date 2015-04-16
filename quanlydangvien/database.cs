@@ -118,8 +118,29 @@ namespace quanlydangvien
             db_connection();
             cmd = new SqlCommand();
             string MaDV = dvr.Cells["MaDV"].Value.ToString();
-            cmd.CommandText = "DELETE FROM dangvien WHERE MADV=@MADV";
+            cmd.CommandText = "DELETE FROM dangvien WHERE MaDV=@MADV";
             cmd.Parameters.AddWithValue("@MaDV", MaDV);
+            cmd.Connection = connect;
+            cmd.ExecuteNonQuery();
+        }
+        public DataSet laydanhsachchibo()
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM chibo";
+            cmd.Connection = connect;
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            return ds;
+        }
+        public void xoachibo(DataGridViewRow dvr)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            string MaCB = dvr.Cells["MaCB"].Value.ToString();
+            cmd.CommandText = "DELETE FROM chibo WHERE MaCB=@MaCB";
+            cmd.Parameters.AddWithValue("@MaCB",MaCB);
             cmd.Connection = connect;
             cmd.ExecuteNonQuery();
         }

@@ -12,10 +12,14 @@ namespace quanlydangvien
 {
     public partial class formhethongquanly : Form
     {
+        database db = new database();
+        DataSet ds = new DataSet();
+        string form;
         public formhethongquanly()
         {
             InitializeComponent();
-            database db = new database();
+
+            
             toolStripquanlyhoso.Visible = false;
             comboBoxloc.Visible = false;
             textBoxtimkiem.Visible = false;
@@ -60,31 +64,14 @@ namespace quanlydangvien
         private void danhSáchĐảngViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            pictureBoxlogo.Visible = false;
-            labeltb1.Visible = false;
-            labeltb2.Visible = false;
-            labeltb3.Visible = false;
-            toolStripquanlyhoso.Visible = true;
-            comboBoxloc.Visible = true;
-            textBoxtimkiem.Visible = true;
-            buttontimkiem.Visible = true;
-            buttonendpre.Visible = true;
-            buttonpre.Visible = true;
-            buttonnext.Visible = true;
-            buttonendnext.Visible = true;
-            labeltongtrang.Visible = true;
-            textBoxsotrang.Visible = true;
-            tabControl1.Visible = true;
-            dataGridViewdanhsach.Visible = true;
-            database db = new database();
-            DataSet ds= new DataSet();
+            Anlogo();
+            hiendanhsach();
+            //
+            form = "dangvien";
             ds = db.laydanhsachdangvien();
             dataGridViewdanhsach.DataSource = ds.Tables[0];
-            if (dataGridViewdanhsach.SelectedRows.Count > 0)
-            {
 
-               
-            }
+            
 
         }
 
@@ -104,11 +91,19 @@ namespace quanlydangvien
 
                 if (MessageBox.Show(null, "Bạn có muốn xóa không!", "Cảnh Báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    database db = new database();
-                    db.xoadangvien(dataGridViewdanhsach.SelectedRows[0]);
-                    DataSet ds = new DataSet();
-                    ds = db.laydanhsachdangvien();
-                    dataGridViewdanhsach.DataSource = ds.Tables[0];
+                    if (form == "dangvien") {
+                        db.xoadangvien(dataGridViewdanhsach.SelectedRows[0]);
+                        ds = db.laydanhsachdangvien();
+                        dataGridViewdanhsach.DataSource = ds.Tables[0];
+                    }
+                    else if (form == "chibo")
+                    {
+                        db.xoachibo(dataGridViewdanhsach.SelectedRows[0]);
+                        ds = db.laydanhsachchibo();
+                        dataGridViewdanhsach.DataSource = ds.Tables[0];
+                    }
+                    
+                    
                     
                 }
             }
@@ -117,6 +112,72 @@ namespace quanlydangvien
         private void comboBoxloc_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void formhethongquanly_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewdanhsach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewdanhsach.SelectedRows.Count > 0)
+            {
+                toolStripButtonsua.Enabled = true;
+                toolStripButtonxoa.Enabled = true;
+            }
+            else {
+                toolStripButtonsua.Enabled = false;
+                toolStripButtonxoa.Enabled = false;
+            }
+            
+        }
+
+        private void quảnLýChiBộToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Anlogo();
+            hiendanhsach();
+
+            menuStrip1.Select();
+            form = "chibo";
+            ds = db.laydanhsachchibo();
+            dataGridViewdanhsach.DataSource = ds.Tables[0];
+        }
+        private void Anlogo() {
+            pictureBoxlogo.Visible = false;
+            labeltb1.Visible = false;
+            labeltb2.Visible = false;
+            labeltb3.Visible = false;
+            
+        }
+        private void hiendanhsach() {
+            toolStripquanlyhoso.Visible = true;
+            toolStripButtonsua.Enabled = false;
+            toolStripButtonxoa.Enabled = false;
+            comboBoxloc.Visible = true;
+            textBoxtimkiem.Visible = true;
+            buttontimkiem.Visible = true;
+            buttonendpre.Visible = true;
+            buttonpre.Visible = true;
+            buttonnext.Visible = true;
+            buttonendnext.Visible = true;
+            labeltongtrang.Visible = true;
+            textBoxsotrang.Visible = true;
+            tabControl1.Visible = true;
+            dataGridViewdanhsach.Visible = true;
+        }
+
+        private void toolStripButtonthem_Click(object sender, EventArgs e)
+        {
+            if (form == "dangvien")
+            {
+                themdangvien tdv = new themdangvien(false,null);
+                tdv.ShowDialog();
+            }
+            else if (form == "chibo")
+            {
+                
+            }
         }
     }
 }

@@ -123,7 +123,7 @@
             this.Columntenchbo});
             this.dataGridView1.Location = new System.Drawing.Point(451, 64);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(254, 195);
             this.dataGridView1.TabIndex = 3;
             // 
             // Columnmachibo
@@ -152,6 +152,7 @@
             this.Controls.Add(this.labelthemchibo);
             this.Name = "Formthemchibo";
             this.Text = "Formthemchibo";
+            this.Load += new System.EventHandler(this.Formthemchibo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

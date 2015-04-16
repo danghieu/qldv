@@ -12,9 +12,14 @@ namespace quanlydangvien
 {
     public partial class Formthemchibo : Form
     {
-        public Formthemchibo()
+        public Formthemchibo(bool edit,DataGridViewRow dvr)
         {
             InitializeComponent();
+        }
+
+        private void Formthemchibo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
