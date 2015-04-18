@@ -13,48 +13,46 @@ namespace quanlydangvien
     public partial class themdangvien : Form
     {
         String image = Directory.GetCurrentDirectory() + @"/upload/noavatar.gif";
-        
-                //var data = (Byte[])(row.Cells["afbeelding"].Value);
-               // var stream = new MemoryStream(data);
-               // pictureBox1.Image= Image.FromStream(stream);
-                
-        public themdangvien(bool edit,DataGridViewRow dvr)
+
+        public themdangvien(string text, DataGridViewRow dvr)
         {
             InitializeComponent();
-            if (edit == true) {
-                Text = "Sửa Đảng Viên";
+            Text = text;
+            if (text=="SỬA ĐẢNG VIÊN")
+            {
+                
                 var data = (Byte[])(dvr.Cells["anhdaidien"].Value);
                 var stream = new MemoryStream(data);
                 pictureBox1.Image = Image.FromStream(stream);
-                
+
                 textBoxsothedv.Text = dvr.Cells["MaDV"].Value.ToString();
-                textBoxten.Text= dvr.Cells["hoten"].Value.ToString();
-                comboBoxtrangthai.Text =dvr.Cells["tinhtrangDV"].Value.ToString();
-                textBoxsolylich.Text=dvr.Cells["solylich"].Value.ToString();
-                textBoxcmnd.Text=dvr.Cells["CMND"].Value.ToString(); 
-                dateTimePickerngaysinh.Value=(DateTime) dvr.Cells["ngaysinh"].Value;
-                comboBoxdantoc.Text=dvr.Cells["MaDT"].Value.ToString();
-                comboBoxtongiao.Text=dvr.Cells["MaTG"].Value.ToString(); 
-                comboBoxtrinhdophothong.Text=dvr.Cells["maTDVH"].Value.ToString();
-                comboBoxchucdanh.Text=dvr.Cells["chucdanh"].Value.ToString();
-                comboBoxgioitinh.Text=dvr.Cells["gioitinh"].Value.ToString();
-                textBoxbidanh.Text=dvr.Cells["bidanh"].Value.ToString();
-                textBoxnghenghiep.Text=dvr.Cells["nghenghiep"].Value.ToString();
-                textBoxnoisinh.Text=dvr.Cells["noisinh"].Value.ToString(); 
-                textBoxquequan.Text=dvr.Cells["quequan"].Value.ToString(); 
-                textBoxhiennay.Text=dvr.Cells["choohiennay"].Value.ToString(); 
-                textBoxnoivaodubi.Text=dvr.Cells["noivaodubi"].Value.ToString(); 
-                dateTimePickerngayvaodubi.Value=(DateTime) dvr.Cells["ngayvaodubi"].Value;
-                textBoxnoivaochinhthuc.Text=dvr.Cells["MaDV"].Value.ToString();
-                dateTimePickerngayvaochinhthuc.Value=(DateTime) dvr.Cells["ngayvaochinhthuc"].Value;
-                comboBoxngoaingu.Text=dvr.Cells["ngoaingu"].Value.ToString(); 
-                comboBoxchibo.Text=dvr.Cells["MaCB"].Value.ToString();
+                textBoxten.Text = dvr.Cells["hoten"].Value.ToString();
+                comboBoxtrangthai.Text = dvr.Cells["tinhtrangDV"].Value.ToString();
+                textBoxsolylich.Text = dvr.Cells["solylich"].Value.ToString();
+                textBoxcmnd.Text = dvr.Cells["CMND"].Value.ToString();
+                dateTimePickerngaysinh.Value = (DateTime)dvr.Cells["ngaysinh"].Value;
+                comboBoxdantoc.Text = dvr.Cells["MaDT"].Value.ToString();
+                comboBoxtongiao.Text = dvr.Cells["MaTG"].Value.ToString();
+                comboBoxtrinhdophothong.Text = dvr.Cells["maTDVH"].Value.ToString();
+                comboBoxchucdanh.Text = dvr.Cells["chucdanh"].Value.ToString();
+                comboBoxgioitinh.Text = dvr.Cells["gioitinh"].Value.ToString();
+                textBoxbidanh.Text = dvr.Cells["bidanh"].Value.ToString();
+                textBoxnghenghiep.Text = dvr.Cells["nghenghiep"].Value.ToString();
+                textBoxnoisinh.Text = dvr.Cells["noisinh"].Value.ToString();
+                textBoxquequan.Text = dvr.Cells["quequan"].Value.ToString();
+                textBoxhiennay.Text = dvr.Cells["choohiennay"].Value.ToString();
+                textBoxnoivaodubi.Text = dvr.Cells["noivaodubi"].Value.ToString();
+                dateTimePickerngayvaodubi.Value = (DateTime)dvr.Cells["ngayvaodubi"].Value;
+                textBoxnoivaochinhthuc.Text = dvr.Cells["MaDV"].Value.ToString();
+                dateTimePickerngayvaochinhthuc.Value = (DateTime)dvr.Cells["ngayvaochinhthuc"].Value;
+                comboBoxngoaingu.Text = dvr.Cells["ngoaingu"].Value.ToString();
+                comboBoxchibo.Text = dvr.Cells["MaCB"].Value.ToString();
                 richTextBoxthongtinthem.Text = dvr.Cells["thongtinthem"].Value.ToString();
             }
-            
+
         }
 
-         
+
 
         private void labelngoaingu_Click(object sender, EventArgs e)
         {
@@ -69,41 +67,50 @@ namespace quanlydangvien
             if (result == DialogResult.OK)
             {
                 pictureBox1.Image = Image.FromStream(open.OpenFile());
-                
+
                 image = open.FileName;
             }
-           
+
         }
 
         private void buttonluu_Click(object sender, EventArgs e)
         {
             dangvien dv = new dangvien(
-                image, 
-                textBoxsothedv.Text, 
-                textBoxten.Text, 
+                image,
+                textBoxsothedv.Text,
+                textBoxten.Text,
                 comboBoxtrangthai.Text,
                 textBoxsolylich.Text,
-                int.Parse(textBoxcmnd.Text), 
+                int.Parse(textBoxcmnd.Text),
                 dateTimePickerngaysinh.Value,
-                comboBoxdantoc.Text, 
-                comboBoxtongiao.Text, 
-                comboBoxtrinhdophothong.Text, 
+                comboBoxdantoc.Text,
+                comboBoxtongiao.Text,
+                comboBoxtrinhdophothong.Text,
                 comboBoxchucdanh.Text,
                 comboBoxgioitinh.Text,
-                textBoxbidanh.Text, 
-                textBoxnghenghiep.Text, 
-                textBoxnoisinh.Text, 
-                textBoxquequan.Text, 
-                textBoxhiennay.Text, 
-                textBoxnoivaodubi.Text, 
-                dateTimePickerngayvaodubi.Value, 
+                textBoxbidanh.Text,
+                textBoxnghenghiep.Text,
+                textBoxnoisinh.Text,
+                textBoxquequan.Text,
+                textBoxhiennay.Text,
+                textBoxnoivaodubi.Text,
+                dateTimePickerngayvaodubi.Value,
                 textBoxnoivaochinhthuc.Text,
-                dateTimePickerngayvaochinhthuc.Value, 
-                comboBoxngoaingu.Text, 
-                comboBoxchibo.Text, 
+                dateTimePickerngayvaochinhthuc.Value,
+                comboBoxngoaingu.Text,
+                comboBoxchibo.Text,
                 richTextBoxthongtinthem.Text);
-            //Them Dang Vien
+            if (Text=="THÊM ĐẢNG VIÊN")
+            {
+                
+                //Them Dang Vien
                 dv.themdangvien();
+            }
+            else {
+                dv.suadangvien();
+            
+            }
+            
         }
 
 
@@ -138,10 +145,15 @@ namespace quanlydangvien
             {
                 tabControl1.SelectedTab = tabPage1;
             }
-            else { this.Close(); }
+            else {
+                if (MessageBox.Show(null, "Bạn muốn thoát không?", "Cảnh báo!", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                    this.Close();
+                }
+                }
+               
 
 
-            
+
         }
 
         private void textBoxcmnd_TextChanged(object sender, EventArgs e)

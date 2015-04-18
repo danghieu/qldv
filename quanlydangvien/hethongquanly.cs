@@ -19,12 +19,12 @@ namespace quanlydangvien
         {
             InitializeComponent();
 
-            
+
             toolStripquanlyhoso.Visible = false;
             comboBoxloc.Visible = false;
             textBoxtimkiem.Visible = false;
             buttontimkiem.Visible = false;
-            buttonendpre.Visible  = false;
+            buttonendpre.Visible = false;
             buttonpre.Visible = false;
             buttonnext.Visible = false;
             buttonendnext.Visible = false;
@@ -32,6 +32,9 @@ namespace quanlydangvien
             textBoxsotrang.Visible = false;
             tabControl1.Visible = false;
             dataGridViewdanhsach.Visible = false;
+            if (form == "chibo") {
+                tabPagedsdvchinhthuc.Text = "Danh Sách Chi Bộ";
+            }
         }
 
         private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
@@ -56,8 +59,7 @@ namespace quanlydangvien
 
         private void thêmĐảngViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool edit = false; //
-            themdangvien formthemdangvien = new themdangvien(edit,null);
+            themdangvien formthemdangvien = new themdangvien("THÊM ĐẢNG VIÊN", null);
             formthemdangvien.ShowDialog();
         }
 
@@ -68,19 +70,32 @@ namespace quanlydangvien
             hiendanhsach();
             //
             form = "dangvien";
+            tabPagedsdvchinhthuc.Text = "Danh Sách Đảng Viên";
+            tabPage2.Text = "Danh Sách Đảng Viên Chính Thức";
+            tabPage3.Text = "Danh Sách Đảng Viên Dự Bị";
             ds = db.laydanhsachdangvien();
             dataGridViewdanhsach.DataSource = ds.Tables[0];
 
-            
+
 
         }
 
         private void toolStripButtonsua_Click(object sender, EventArgs e)
         {
-            if (dataGridViewdanhsach.SelectedRows.Count > 0) {
-                
-                themdangvien tdv = new themdangvien(true, dataGridViewdanhsach.SelectedRows[0]);
-                tdv.ShowDialog();
+
+            if (dataGridViewdanhsach.SelectedRows.Count > 0)
+            {
+                if (form == "dangvien")
+                {
+                    themdangvien tdv = new themdangvien("SỬA ĐẢNG VIÊN", dataGridViewdanhsach.SelectedRows[0]);
+                    tdv.ShowDialog();
+                }
+                else if (form == "chibo")
+                {
+                    Formthemchibo tcb = new Formthemchibo("SỬA CHI BỘ", dataGridViewdanhsach.SelectedRows[0]);
+                    tcb.ShowDialog();
+                }
+
             }
         }
 
@@ -91,7 +106,8 @@ namespace quanlydangvien
 
                 if (MessageBox.Show(null, "Bạn có muốn xóa không!", "Cảnh Báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    if (form == "dangvien") {
+                    if (form == "dangvien")
+                    {
                         db.xoadangvien(dataGridViewdanhsach.SelectedRows[0]);
                         ds = db.laydanhsachdangvien();
                         dataGridViewdanhsach.DataSource = ds.Tables[0];
@@ -102,9 +118,9 @@ namespace quanlydangvien
                         ds = db.laydanhsachchibo();
                         dataGridViewdanhsach.DataSource = ds.Tables[0];
                     }
-                    
-                    
-                    
+
+
+
                 }
             }
         }
@@ -126,11 +142,12 @@ namespace quanlydangvien
                 toolStripButtonsua.Enabled = true;
                 toolStripButtonxoa.Enabled = true;
             }
-            else {
+            else
+            {
                 toolStripButtonsua.Enabled = false;
                 toolStripButtonxoa.Enabled = false;
             }
-            
+
         }
 
         private void quảnLýChiBộToolStripMenuItem_Click(object sender, EventArgs e)
@@ -140,17 +157,21 @@ namespace quanlydangvien
 
             menuStrip1.Select();
             form = "chibo";
+            tabPagedsdvchinhthuc.Text = "Danh Sách Chi Bộ";
+            
             ds = db.laydanhsachchibo();
             dataGridViewdanhsach.DataSource = ds.Tables[0];
         }
-        private void Anlogo() {
+        private void Anlogo()
+        {
             pictureBoxlogo.Visible = false;
             labeltb1.Visible = false;
             labeltb2.Visible = false;
             labeltb3.Visible = false;
-            
+
         }
-        private void hiendanhsach() {
+        private void hiendanhsach()
+        {
             toolStripquanlyhoso.Visible = true;
             toolStripButtonsua.Enabled = false;
             toolStripButtonxoa.Enabled = false;
@@ -171,12 +192,13 @@ namespace quanlydangvien
         {
             if (form == "dangvien")
             {
-                themdangvien tdv = new themdangvien(false,null);
+                themdangvien tdv = new themdangvien("THÊM ĐẢNG VIÊN", null);
                 tdv.ShowDialog();
             }
             else if (form == "chibo")
             {
-                
+                Formthemchibo tcb = new Formthemchibo("THÊM CHI BỘ", null);
+                tcb.ShowDialog();
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace quanlydangvien
-{
+{   
     class dangvien
     {
         private string anhdaidien;
@@ -33,6 +33,13 @@ namespace quanlydangvien
         private string macb;
         private string thongtinthem;
 
+        database db = new database();
+
+        public string Anhdaidien
+        {
+            get { return anhdaidien; }
+            set { anhdaidien = value; }
+        }
         public string Thongtinthem
         {
             get { return thongtinthem; }
@@ -201,10 +208,23 @@ namespace quanlydangvien
         
         }
 
-        public void themdangvien() {
-            database db = new database();
-            db.themdangvien(anhdaidien, sothe, hoten, ngaysinh, gioitinh, cmnd, ngaychinhthuc, noivaochinhthuc, ngayvaodubi, noivaodubi, quequan, noisinh, matg, madt, matdhv, solylich, bidanh, nghenghiep, Macb, chucdanh,choohiennay, thongtinthem, trangthai);
+        public bool themdangvien()
+        {
+            if (!ktttdangvien())
+            {
+                db.themdangvien(this);
+                return true;
+            }
+            return false;
+            
+            
         }
-
+        public void suadangvien() {
+            db.suadangvien(this);
+        }
+        public bool ktttdangvien() {
+            return db.kttontaidangvien(this);
+        }
+        
     }
 }

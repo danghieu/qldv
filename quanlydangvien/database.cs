@@ -15,7 +15,8 @@ namespace quanlydangvien
         private SqlConnection connect;
         SqlCommand cmd;
 
-        public void db_connection(){
+        public void db_connection()
+        {
             try
             {
                 conn = "Data Source=DANGHIEU-PC;Initial Catalog=quanlydangvien;Integrated Security=True";
@@ -51,51 +52,50 @@ namespace quanlydangvien
                     curuser = new vanphongchibo(tk, mk, ht, cd);
 
                 }
-                else {
+                else
+                {
                     curuser = new vanphongdanguy(tk, mk, ht, cd);
                 }
-               // connect.Close();
+                // connect.Close();
             }
             return curuser;
         }
 
-        public void themdangvien(string image,string sothe, string hoten, DateTime ngaysinh, string gioitinh, int cmnd, 
-            DateTime ngayvaochinhthuc, string noivaochinhthuc, DateTime ngayvaodubi, string noivaodubi, string quequan, 
-            string noisinh, string MaTG, string MaDT, string maTDVH, string solylich,string bidanh, string nghenghiep,
-            string MaCB, string chucdanh, string choohiennay, string thongtinthem, string tinhtrangDV)
+        public void themdangvien(dangvien dv)
         {
-            
+
             db_connection();
             cmd = new SqlCommand();
             cmd.CommandText = "INSERT INTO dangvien(anhdaidien,MaDV,hoten,ngaysinh,gioitinh,CMND,ngayvaochinhthuc,noivaochinhthuc,ngayvaodubi,noivaodubi,quequan,noisinh,MaTG,MaDT,maTDVH,tinhtrangDV,bidanh,nghenghiep,MaCB,chucdanh,choohiennay,thongtinthem)" +
                                             "VALUES(@image,@sothe,@hoten,@ngaysinh,@gioitinh,@cmnd,@ngayvaochinhthuc,@noivaochinhthuc,@ngayvaodubi,@noivaodubi,@quequan,@noisinh,@MaTG,@MaDT,@maTDVH,@tinhtrangDV,@bidanh,@nghenghiep,@MaCB,@chucdanh,@choohiennay,@thongtinthem) ";
-            cmd.Parameters.AddWithValue("@image", convertImageToByte(image));
-            cmd.Parameters.AddWithValue("@sothe", sothe );
-            cmd.Parameters.AddWithValue("@hoten", hoten);
-            cmd.Parameters.AddWithValue("@ngaysinh",ngaysinh );
-            cmd.Parameters.AddWithValue("@gioitinh",gioitinh );
-            cmd.Parameters.AddWithValue("@cmnd", cmnd);
-            cmd.Parameters.AddWithValue("@ngayvaochinhthuc",ngayvaochinhthuc );
-            cmd.Parameters.AddWithValue("@noivaochinhthuc",noivaochinhthuc );
-            cmd.Parameters.AddWithValue("@ngayvaodubi", ngayvaodubi);
-            cmd.Parameters.AddWithValue("@noivaodubi",noivaodubi );
-            cmd.Parameters.AddWithValue("@quequan",quequan );
-            cmd.Parameters.AddWithValue("@noisinh",noisinh );
-            cmd.Parameters.AddWithValue("@MaTG", MaTG);
-            cmd.Parameters.AddWithValue("@MaDT",MaDT );
-            cmd.Parameters.AddWithValue("@maTDVH",maTDVH );
-            cmd.Parameters.AddWithValue("@solylich",solylich );
-            cmd.Parameters.AddWithValue("@bidanh",bidanh );
-            cmd.Parameters.AddWithValue("@nghenghiep",nghenghiep );
-            cmd.Parameters.AddWithValue("@MaCB",MaCB );
-            cmd.Parameters.AddWithValue("@chucdanh",chucdanh );
-            cmd.Parameters.AddWithValue("@thongtinthem",thongtinthem );
-            cmd.Parameters.AddWithValue("@choohiennay", choohiennay);
-            cmd.Parameters.AddWithValue("@tinhtrangDV", tinhtrangDV);
+            cmd.Parameters.AddWithValue("@image", convertImageToByte(dv.Anhdaidien));
+            cmd.Parameters.AddWithValue("@sothe", dv.Sothe);
+            cmd.Parameters.AddWithValue("@hoten", dv.Hoten);
+            cmd.Parameters.AddWithValue("@ngaysinh", dv.Ngaysinh);
+            cmd.Parameters.AddWithValue("@gioitinh", dv.Gioitinh);
+            cmd.Parameters.AddWithValue("@cmnd", dv.Cmnd);
+            cmd.Parameters.AddWithValue("@ngayvaochinhthuc", dv.Ngaychinhthuc);
+            cmd.Parameters.AddWithValue("@noivaochinhthuc", dv.Noivaochinhthuc);
+            cmd.Parameters.AddWithValue("@ngayvaodubi", dv.Ngayvaodubi);
+            cmd.Parameters.AddWithValue("@noivaodubi", dv.Ngayvaodubi);
+            cmd.Parameters.AddWithValue("@quequan", dv.Quequan);
+            cmd.Parameters.AddWithValue("@noisinh", dv.Noisinh);
+            cmd.Parameters.AddWithValue("@MaTG", dv.Matg);
+            cmd.Parameters.AddWithValue("@MaDT", dv.Madt);
+            cmd.Parameters.AddWithValue("@maTDVH", dv.Matdhv);
+            cmd.Parameters.AddWithValue("@solylich", dv.Solylich);
+            cmd.Parameters.AddWithValue("@bidanh", dv.Bidanh);
+            cmd.Parameters.AddWithValue("@nghenghiep", dv.Nghenghiep);
+            cmd.Parameters.AddWithValue("@MaCB", dv.Macb);
+            cmd.Parameters.AddWithValue("@chucdanh", dv.Chucdanh);
+            cmd.Parameters.AddWithValue("@thongtinthem", dv.Thongtinthem);
+            cmd.Parameters.AddWithValue("@choohiennay", dv.Choohiennay);
+            cmd.Parameters.AddWithValue("@tinhtrangDV", dv.Trangthai);
             cmd.Connection = connect;
             cmd.ExecuteReader();
         }
-        private byte[] convertImageToByte(string image){
+        private byte[] convertImageToByte(string image)
+        {
             FileStream fs;
             fs = new FileStream(image, FileMode.Open, FileAccess.Read);
             byte[] picbyte = new byte[fs.Length];
@@ -104,7 +104,8 @@ namespace quanlydangvien
             return picbyte;
 
         }
-        public DataSet laydanhsachdangvien() { 
+        public DataSet laydanhsachdangvien()
+        {
             db_connection();
             cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM dangvien";
@@ -114,7 +115,8 @@ namespace quanlydangvien
             sda.Fill(ds);
             return ds;
         }
-        public void xoadangvien(DataGridViewRow dvr) {
+        public void xoadangvien(DataGridViewRow dvr)
+        {
             db_connection();
             cmd = new SqlCommand();
             string MaDV = dvr.Cells["MaDV"].Value.ToString();
@@ -122,6 +124,51 @@ namespace quanlydangvien
             cmd.Parameters.AddWithValue("@MaDV", MaDV);
             cmd.Connection = connect;
             cmd.ExecuteNonQuery();
+        }
+        public void suadangvien(dangvien dv)
+        {
+
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "UPDATE  dangvien SET anhdaidien=@image,hoten=@hoten,ngaysinh=@ngaysinh,gioitinh=@gioitinh,CMND=@cmnd,ngayvaochinhthuc=@ngayvaochinhthuc,noivaochinhthuc=@noivaochinhthuc,ngayvaodubi=@ngayvaodubi,noivaodubi=@noivaodubi,quequan=@quequan,noisinh=@noisinh,MaTG=@MaTG,MaDT=@MaDT,maTDVH=@maTDVH,tinhtrangDV=@tinhtrangDV,bidanh=@bidanh,nghenghiep=@nghenghiep,MaCB=@MaCB,chucdanh=@chucdanh,choohiennay=@choohiennay,thongtinthem=@thongtinthem WHERE MaDV=@sothe";
+            cmd.Parameters.AddWithValue("@image", convertImageToByte(dv.Anhdaidien));
+            cmd.Parameters.AddWithValue("@sothe", dv.Sothe);
+            cmd.Parameters.AddWithValue("@hoten", dv.Hoten);
+            cmd.Parameters.AddWithValue("@ngaysinh", dv.Ngaysinh);
+            cmd.Parameters.AddWithValue("@gioitinh", dv.Gioitinh);
+            cmd.Parameters.AddWithValue("@cmnd", dv.Cmnd);
+            cmd.Parameters.AddWithValue("@ngayvaochinhthuc", dv.Ngaychinhthuc);
+            cmd.Parameters.AddWithValue("@noivaochinhthuc", dv.Noivaochinhthuc);
+            cmd.Parameters.AddWithValue("@ngayvaodubi", dv.Ngayvaodubi);
+            cmd.Parameters.AddWithValue("@noivaodubi", dv.Ngayvaodubi);
+            cmd.Parameters.AddWithValue("@quequan", dv.Quequan);
+            cmd.Parameters.AddWithValue("@noisinh", dv.Noisinh);
+            cmd.Parameters.AddWithValue("@MaTG", dv.Matg);
+            cmd.Parameters.AddWithValue("@MaDT", dv.Madt);
+            cmd.Parameters.AddWithValue("@maTDVH", dv.Matdhv);
+            cmd.Parameters.AddWithValue("@solylich", dv.Solylich);
+            cmd.Parameters.AddWithValue("@bidanh", dv.Bidanh);
+            cmd.Parameters.AddWithValue("@nghenghiep", dv.Nghenghiep);
+            cmd.Parameters.AddWithValue("@MaCB", dv.Macb);
+            cmd.Parameters.AddWithValue("@chucdanh", dv.Chucdanh);
+            cmd.Parameters.AddWithValue("@thongtinthem", dv.Thongtinthem);
+            cmd.Parameters.AddWithValue("@choohiennay", dv.Choohiennay);
+            cmd.Parameters.AddWithValue("@tinhtrangDV", dv.Trangthai);
+            cmd.Connection = connect;
+            cmd.ExecuteNonQuery();
+        }
+        public bool kttontaidangvien(dangvien dv){
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "SELECT MaDV FROM dangvien WHERE MaDV=@madv ";
+            cmd.Parameters.AddWithValue("@madv", dv.Sothe);
+            cmd.Connection = connect;
+            SqlDataReader kt = cmd.ExecuteReader();
+            if (kt.Read())
+            {
+                return true;
+            }
+            else return false;
         }
         public DataSet laydanhsachchibo()
         {
@@ -140,9 +187,48 @@ namespace quanlydangvien
             cmd = new SqlCommand();
             string MaCB = dvr.Cells["MaCB"].Value.ToString();
             cmd.CommandText = "DELETE FROM chibo WHERE MaCB=@MaCB";
-            cmd.Parameters.AddWithValue("@MaCB",MaCB);
+            cmd.Parameters.AddWithValue("@MaCB", MaCB);
             cmd.Connection = connect;
             cmd.ExecuteNonQuery();
+        }
+        public void themchibo(chibo cb){
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "INSERT INTO chibo(MaCB,TenCB)" +
+                                            "VALUES(@MaCB,@TenCB) ";
+            cmd.Parameters.AddWithValue("@TenCB", cb.TenCB);
+            cmd.Parameters.AddWithValue("@MaCB", cb.MaCB);
+            
+            
+            cmd.Connection = connect;
+            cmd.ExecuteReader();
+        }
+        public void suachibo(chibo cb)
+        {
+
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "UPDATE  dangvien SET MaCB=@MaCB,TenCB=@TenCB";
+            cmd.Parameters.AddWithValue("@TenCB", cb.TenCB);
+            cmd.Parameters.AddWithValue("@MaCB", cb.MaCB);
+            
+            
+            cmd.Connection = connect;
+            cmd.ExecuteNonQuery();
+        }
+        public bool kttontaichibo(chibo cb)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "SELECT MaCB FROM chibo WHERE MaCB=@macb ";
+            cmd.Parameters.AddWithValue("@macb", cb.MaCB);
+            cmd.Connection = connect;
+            SqlDataReader kt = cmd.ExecuteReader();
+            if (kt.Read())
+            {
+                return true;
+            }
+            else return false;
         }
     }
 

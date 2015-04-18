@@ -36,10 +36,8 @@
             this.buttoncapnhat = new System.Windows.Forms.Button();
             this.buttonxoa = new System.Windows.Forms.Button();
             this.buttonthoat = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Columnmachibo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Columntenchbo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridViewds = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewds)).BeginInit();
             this.SuspendLayout();
             // 
             // labelthemchibo
@@ -88,17 +86,18 @@
             // buttoncapnhat
             // 
             this.buttoncapnhat.BackColor = System.Drawing.Color.Aqua;
-            this.buttoncapnhat.Location = new System.Drawing.Point(98, 236);
+            this.buttoncapnhat.Location = new System.Drawing.Point(86, 251);
             this.buttoncapnhat.Name = "buttoncapnhat";
             this.buttoncapnhat.Size = new System.Drawing.Size(64, 23);
             this.buttoncapnhat.TabIndex = 2;
             this.buttoncapnhat.Text = "Cập Nhật";
             this.buttoncapnhat.UseVisualStyleBackColor = false;
+            this.buttoncapnhat.Click += new System.EventHandler(this.buttoncapnhat_Click);
             // 
             // buttonxoa
             // 
             this.buttonxoa.BackColor = System.Drawing.Color.Aqua;
-            this.buttonxoa.Location = new System.Drawing.Point(209, 236);
+            this.buttonxoa.Location = new System.Drawing.Point(201, 251);
             this.buttonxoa.Name = "buttonxoa";
             this.buttonxoa.Size = new System.Drawing.Size(64, 23);
             this.buttonxoa.TabIndex = 2;
@@ -108,40 +107,27 @@
             // buttonthoat
             // 
             this.buttonthoat.BackColor = System.Drawing.Color.Aqua;
-            this.buttonthoat.Location = new System.Drawing.Point(312, 236);
+            this.buttonthoat.Location = new System.Drawing.Point(304, 251);
             this.buttonthoat.Name = "buttonthoat";
             this.buttonthoat.Size = new System.Drawing.Size(64, 23);
             this.buttonthoat.TabIndex = 2;
             this.buttonthoat.Text = "Thoát";
             this.buttonthoat.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dataGridViewds
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Columnmachibo,
-            this.Columntenchbo});
-            this.dataGridView1.Location = new System.Drawing.Point(451, 64);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(254, 195);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // Columnmachibo
-            // 
-            this.Columnmachibo.HeaderText = "Mã Chi Bộ";
-            this.Columnmachibo.Name = "Columnmachibo";
-            // 
-            // Columntenchbo
-            // 
-            this.Columntenchbo.HeaderText = "Tên Chi Bộ";
-            this.Columntenchbo.Name = "Columntenchbo";
+            this.dataGridViewds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewds.Location = new System.Drawing.Point(405, 63);
+            this.dataGridViewds.Name = "dataGridViewds";
+            this.dataGridViewds.Size = new System.Drawing.Size(317, 236);
+            this.dataGridViewds.TabIndex = 3;
             // 
             // Formthemchibo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 337);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewds);
             this.Controls.Add(this.buttonthoat);
             this.Controls.Add(this.buttonxoa);
             this.Controls.Add(this.buttoncapnhat);
@@ -153,7 +139,7 @@
             this.Name = "Formthemchibo";
             this.Text = "Formthemchibo";
             this.Load += new System.EventHandler(this.Formthemchibo_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,8 +155,6 @@
         private System.Windows.Forms.Button buttoncapnhat;
         private System.Windows.Forms.Button buttonxoa;
         private System.Windows.Forms.Button buttonthoat;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Columnmachibo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Columntenchbo;
+        private System.Windows.Forms.DataGridView dataGridViewds;
     }
 }

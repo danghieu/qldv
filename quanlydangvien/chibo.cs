@@ -10,6 +10,7 @@ namespace quanlydangvien
     {
         private string macb;
         private string tencb;
+        database db = new database();
         public string MaCB
         {
             get
@@ -37,6 +38,17 @@ namespace quanlydangvien
         {
             macb=MaCB;
             tencb = TenCB;
+        }
+        public void themchibo() 
+        {
+            db.themchibo(this);
+        }
+        public void suachibo()
+        {
+            db.suachibo(this);
+        }
+        public bool ktttchibo() {
+            return db.kttontaichibo(this);
         }
     }
    
