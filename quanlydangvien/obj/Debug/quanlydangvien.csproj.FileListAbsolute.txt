@@ -46,3 +46,6 @@ F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.Formquanlydangvien.reso
 F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.Properties.Resources.resources
 F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.themdangvien.resources
 F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.csproj.GenerateResource.Cache
+F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.Frm_danhsachdangvien.resources
+F:\php\qldv\qldv\quanlydangvien\obj\Debug\RdlCompile.cache
+F:\php\qldv\qldv\quanlydangvien\obj\Debug\RdlCompile.compiled

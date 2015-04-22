@@ -32,5 +32,15 @@ namespace quanlydangvien.Properties {
                 return ((string)(this["Database2ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DANGHIEU-PC;Initial Catalog=quanlydangvien;Integrated Security=True")]
+        public string quanlydangvienConnectionString {
+            get {
+                return ((string)(this["quanlydangvienConnectionString"]));
+            }
+        }
     }
 }

@@ -13,11 +13,14 @@ namespace quanlydangvien
     public partial class themdangvien : Form
     {
         String image = Directory.GetCurrentDirectory() + @"/upload/noavatar.gif";
-
+        chibo cbselect;
+        database db = new database();
         public themdangvien(string text, DataGridViewRow dvr)
         {
             InitializeComponent();
             Text = text;
+            comboBoxchibo.Items.AddRange(db.dschibocbb().ToArray());
+            comboBoxchibo.DisplayMember = "tencb";
             if (text=="SỬA ĐẢNG VIÊN")
             {
                 
@@ -74,13 +77,22 @@ namespace quanlydangvien
         }
 
         private void buttonluu_Click(object sender, EventArgs e)
-        {
+        {   
+
+
+            try{
+                int cmnd = int.Parse(textBoxcmnd.Text);
+                }
+            catch{
+                MessageBox.Show(null, "Chứng minh nhân dân chưa đúng định dang!", "Cảnh Báo", MessageBoxButtons.OK);
+            }
             dangvien dv = new dangvien(
                 image,
                 textBoxsothedv.Text,
                 textBoxten.Text,
                 comboBoxtrangthai.Text,
                 textBoxsolylich.Text,
+                
                 int.Parse(textBoxcmnd.Text),
                 dateTimePickerngaysinh.Value,
                 comboBoxdantoc.Text,
@@ -98,13 +110,19 @@ namespace quanlydangvien
                 textBoxnoivaochinhthuc.Text,
                 dateTimePickerngayvaochinhthuc.Value,
                 comboBoxngoaingu.Text,
-                comboBoxchibo.Text,
+                cbselect.MaCB,
                 richTextBoxthongtinthem.Text);
             if (Text=="THÊM ĐẢNG VIÊN")
             {
                 
                 //Them Dang Vien
-                dv.themdangvien();
+                if (!dv.themdangvien())
+                {
+                    MessageBox.Show(null, "Đảng Viên đã tồn tại", "Cảnh báo", MessageBoxButtons.OK);
+                }
+                else {
+                    this.Close();
+                }
             }
             else {
                 dv.suadangvien();
@@ -141,6 +159,7 @@ namespace quanlydangvien
 
         private void buttontrove_Click(object sender, EventArgs e)
         {
+
             if (tabControl1.SelectedTab == tabPage2)
             {
                 tabControl1.SelectedTab = tabPage1;
@@ -169,6 +188,12 @@ namespace quanlydangvien
         private void buttontieptheo_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void comboBoxchibo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             cbselect = new chibo(((chibo)comboBoxchibo.SelectedItem).MaCB, ((chibo)comboBoxchibo.SelectedItem).TenCB);
+
         }
     }
 }

@@ -47,12 +47,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="mysql.data">
       <HintPath>..\..\..\Desktop\mysql-connector-net-6.8.3-noinstall\v4.5\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,6 +69,11 @@
     <Compile Include="chibo.cs" />
     <Compile Include="dangvien.cs" />
     <Compile Include="database.cs" />
+    <Compile Include="ds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Formcapnhatdiadanh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +97,12 @@
     </Compile>
     <Compile Include="Formtimkiem.Designer.cs">
       <DependentUpon>Formtimkiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_danhsachdangvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_danhsachdangvien.Designer.cs">
+      <DependentUpon>Frm_danhsachdangvien.cs</DependentUpon>
     </Compile>
     <Compile Include="hethongquanly.cs">
       <SubType>Form</SubType>
@@ -123,6 +137,9 @@
     <EmbeddedResource Include="Formtimkiem.resx">
       <DependentUpon>Formtimkiem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_danhsachdangvien.resx">
+      <DependentUpon>Frm_danhsachdangvien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="hethongquanly.resx">
       <DependentUpon>hethongquanly.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,9 +155,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="themdangvien.resx">
       <DependentUpon>themdangvien.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ds.xsc">
+      <DependentUpon>ds.xsd</DependentUpon>
+    </None>
+    <None Include="ds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ds.xss">
+      <DependentUpon>ds.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -171,7 +171,7 @@
             this.textBoxcmnd.Name = "textBoxcmnd";
             this.textBoxcmnd.Size = new System.Drawing.Size(186, 20);
             this.textBoxcmnd.TabIndex = 7;
-            this.textBoxcmnd.Text = "    ";
+            this.textBoxcmnd.Text = "123123";
             this.textBoxcmnd.TextChanged += new System.EventHandler(this.textBoxcmnd_TextChanged);
             // 
             // label1
@@ -692,6 +692,7 @@
             this.comboBoxchibo.Size = new System.Drawing.Size(157, 21);
             this.comboBoxchibo.TabIndex = 23;
             this.comboBoxchibo.Text = "  ";
+            this.comboBoxchibo.SelectedIndexChanged += new System.EventHandler(this.comboBoxchibo_SelectedIndexChanged);
             // 
             // dateTimePickerngayvaodubi
             // 

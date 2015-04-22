@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace quanlydangvien
 {
-    class chibo
+    public class chibo
     {
         private string macb;
         private string tencb;
+
         database db = new database();
         public string MaCB
         {
@@ -39,9 +40,14 @@ namespace quanlydangvien
             macb=MaCB;
             tencb = TenCB;
         }
-        public void themchibo() 
+        public bool themchibo() 
         {
-            db.themchibo(this);
+            if (!ktttchibo())
+            {
+                db.themchibo(this);
+                return true;
+            }
+            return false;
         }
         public void suachibo()
         {
@@ -51,5 +57,7 @@ namespace quanlydangvien
             return db.kttontaichibo(this);
         }
     }
+
+   
    
 }

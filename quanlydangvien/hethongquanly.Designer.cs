@@ -73,12 +73,17 @@
             this.dataGridViewdanhsach = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxlogo)).BeginInit();
             this.toolStripquanlyhoso.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPagedsdvchinhthuc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewdanhsach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -96,6 +101,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(961, 41);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // hệThốngToolStripMenuItem
             // 
@@ -214,6 +220,7 @@
             this.xuấtDanhSáchToolStripMenuItem.Name = "xuấtDanhSáchToolStripMenuItem";
             this.xuấtDanhSáchToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.xuấtDanhSáchToolStripMenuItem.Text = "Xuất Danh Sách";
+            this.xuấtDanhSáchToolStripMenuItem.Click += new System.EventHandler(this.xuấtDanhSáchToolStripMenuItem_Click);
             // 
             // trợGiúpToolStripMenuItem
             // 
@@ -290,7 +297,7 @@
             this.toolStripButtonthem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonthem.Name = "toolStripButtonthem";
             this.toolStripButtonthem.Size = new System.Drawing.Size(50, 47);
-            this.toolStripButtonthem.Text = "toolStripButton1";
+            this.toolStripButtonthem.Text = "Thêm Đảng vViên";
             this.toolStripButtonthem.Click += new System.EventHandler(this.toolStripButtonthem_Click);
             // 
             // toolStripButtonxoa
@@ -301,7 +308,7 @@
             this.toolStripButtonxoa.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripButtonxoa.Name = "toolStripButtonxoa";
             this.toolStripButtonxoa.Size = new System.Drawing.Size(44, 37);
-            this.toolStripButtonxoa.Text = "toolStripButton1";
+            this.toolStripButtonxoa.Text = "Xóa Đảng Viên";
             this.toolStripButtonxoa.Click += new System.EventHandler(this.toolStripButtonxoa_Click);
             // 
             // toolStripButtonsua
@@ -312,7 +319,7 @@
             this.toolStripButtonsua.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripButtonsua.Name = "toolStripButtonsua";
             this.toolStripButtonsua.Size = new System.Drawing.Size(44, 37);
-            this.toolStripButtonsua.Text = "toolStripButton2";
+            this.toolStripButtonsua.Text = "Chỉnh Sửa";
             this.toolStripButtonsua.Click += new System.EventHandler(this.toolStripButtonsua_Click);
             // 
             // toolStripButtontimkiem
@@ -323,7 +330,8 @@
             this.toolStripButtontimkiem.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripButtontimkiem.Name = "toolStripButtontimkiem";
             this.toolStripButtontimkiem.Size = new System.Drawing.Size(44, 37);
-            this.toolStripButtontimkiem.Text = "toolStripButton1";
+            this.toolStripButtontimkiem.Text = "Tìm Kiếm";
+            this.toolStripButtontimkiem.Click += new System.EventHandler(this.toolStripButtontimkiem_Click);
             // 
             // toolStripButtonlammoi
             // 
@@ -333,7 +341,8 @@
             this.toolStripButtonlammoi.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripButtonlammoi.Name = "toolStripButtonlammoi";
             this.toolStripButtonlammoi.Size = new System.Drawing.Size(44, 37);
-            this.toolStripButtonlammoi.Text = "toolStripButton1";
+            this.toolStripButtonlammoi.Text = "Làm Mới";
+            this.toolStripButtonlammoi.Click += new System.EventHandler(this.toolStripButtonlammoi_Click);
             // 
             // toolStripButtonketxuat
             // 
@@ -343,7 +352,8 @@
             this.toolStripButtonketxuat.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripButtonketxuat.Name = "toolStripButtonketxuat";
             this.toolStripButtonketxuat.Size = new System.Drawing.Size(44, 37);
-            this.toolStripButtonketxuat.Text = "toolStripButton1";
+            this.toolStripButtonketxuat.Text = "Kết Xuất";
+            this.toolStripButtonketxuat.Click += new System.EventHandler(this.toolStripButtonketxuat_Click);
             // 
             // toolStripButtontat
             // 
@@ -353,42 +363,47 @@
             this.toolStripButtontat.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripButtontat.Name = "toolStripButtontat";
             this.toolStripButtontat.Size = new System.Drawing.Size(44, 37);
-            this.toolStripButtontat.Text = "toolStripButton1";
+            this.toolStripButtontat.Text = "Thoát";
+            this.toolStripButtontat.Click += new System.EventHandler(this.toolStripButtontat_Click);
             // 
             // comboBoxloc
             // 
             this.comboBoxloc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxloc.FormattingEnabled = true;
-            this.comboBoxloc.Items.AddRange(new object[] {
-            "Chi bộ HCTH"});
-            this.comboBoxloc.Location = new System.Drawing.Point(12, 92);
+            this.comboBoxloc.Location = new System.Drawing.Point(7, 4);
             this.comboBoxloc.Name = "comboBoxloc";
-            this.comboBoxloc.Size = new System.Drawing.Size(227, 32);
+            this.comboBoxloc.Size = new System.Drawing.Size(232, 32);
             this.comboBoxloc.TabIndex = 8;
+            this.comboBoxloc.Text = "Tất cả chi bộ";
             this.comboBoxloc.SelectedIndexChanged += new System.EventHandler(this.comboBoxloc_SelectedIndexChanged);
             // 
             // textBoxtimkiem
             // 
             this.textBoxtimkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxtimkiem.Location = new System.Drawing.Point(257, 93);
+            this.textBoxtimkiem.Location = new System.Drawing.Point(245, 5);
             this.textBoxtimkiem.Name = "textBoxtimkiem";
-            this.textBoxtimkiem.Size = new System.Drawing.Size(240, 31);
+            this.textBoxtimkiem.Size = new System.Drawing.Size(216, 31);
             this.textBoxtimkiem.TabIndex = 9;
+            this.textBoxtimkiem.Text = "Nhập Tên Đảng Viên";
+            this.textBoxtimkiem.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxtimkiem_MouseClick);
+            this.textBoxtimkiem.TextChanged += new System.EventHandler(this.textBoxtimkiem_TextChanged);
+            this.textBoxtimkiem.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBoxtimkiem_MouseUp);
             // 
             // buttontimkiem
             // 
             this.buttontimkiem.Image = ((System.Drawing.Image)(resources.GetObject("buttontimkiem.Image")));
             this.buttontimkiem.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttontimkiem.Location = new System.Drawing.Point(515, 92);
+            this.buttontimkiem.Location = new System.Drawing.Point(467, 5);
             this.buttontimkiem.Name = "buttontimkiem";
             this.buttontimkiem.Size = new System.Drawing.Size(46, 31);
             this.buttontimkiem.TabIndex = 10;
             this.buttontimkiem.UseVisualStyleBackColor = true;
+            this.buttontimkiem.Click += new System.EventHandler(this.buttontimkiem_Click);
             // 
             // buttonendpre
             // 
             this.buttonendpre.Image = ((System.Drawing.Image)(resources.GetObject("buttonendpre.Image")));
-            this.buttonendpre.Location = new System.Drawing.Point(586, 91);
+            this.buttonendpre.Location = new System.Drawing.Point(539, 4);
             this.buttonendpre.Name = "buttonendpre";
             this.buttonendpre.Size = new System.Drawing.Size(49, 32);
             this.buttonendpre.TabIndex = 11;
@@ -397,42 +412,46 @@
             // buttonpre
             // 
             this.buttonpre.Image = ((System.Drawing.Image)(resources.GetObject("buttonpre.Image")));
-            this.buttonpre.Location = new System.Drawing.Point(641, 92);
+            this.buttonpre.Location = new System.Drawing.Point(594, 5);
             this.buttonpre.Name = "buttonpre";
             this.buttonpre.Size = new System.Drawing.Size(45, 31);
             this.buttonpre.TabIndex = 12;
             this.buttonpre.UseVisualStyleBackColor = true;
+            this.buttonpre.Click += new System.EventHandler(this.buttonpre_Click);
             // 
             // buttonnext
             // 
             this.buttonnext.Image = ((System.Drawing.Image)(resources.GetObject("buttonnext.Image")));
-            this.buttonnext.Location = new System.Drawing.Point(822, 88);
+            this.buttonnext.Location = new System.Drawing.Point(782, 8);
             this.buttonnext.Name = "buttonnext";
             this.buttonnext.Size = new System.Drawing.Size(45, 31);
             this.buttonnext.TabIndex = 13;
             this.buttonnext.UseVisualStyleBackColor = true;
+            this.buttonnext.Click += new System.EventHandler(this.buttonnext_Click);
             // 
             // textBoxsotrang
             // 
             this.textBoxsotrang.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxsotrang.Location = new System.Drawing.Point(703, 90);
+            this.textBoxsotrang.Location = new System.Drawing.Point(656, 7);
             this.textBoxsotrang.Name = "textBoxsotrang";
             this.textBoxsotrang.Size = new System.Drawing.Size(40, 29);
             this.textBoxsotrang.TabIndex = 14;
+            this.textBoxsotrang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxsotrang_KeyPress);
             // 
             // labeltongtrang
             // 
             this.labeltongtrang.AutoSize = true;
-            this.labeltongtrang.Location = new System.Drawing.Point(765, 101);
+            this.labeltongtrang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labeltongtrang.Location = new System.Drawing.Point(703, 10);
             this.labeltongtrang.Name = "labeltongtrang";
-            this.labeltongtrang.Size = new System.Drawing.Size(35, 13);
+            this.labeltongtrang.Size = new System.Drawing.Size(51, 20);
             this.labeltongtrang.TabIndex = 15;
             this.labeltongtrang.Text = "label1";
             // 
             // buttonendnext
             // 
             this.buttonendnext.Image = ((System.Drawing.Image)(resources.GetObject("buttonendnext.Image")));
-            this.buttonendnext.Location = new System.Drawing.Point(883, 88);
+            this.buttonendnext.Location = new System.Drawing.Point(833, 9);
             this.buttonendnext.Name = "buttonendnext";
             this.buttonendnext.Size = new System.Drawing.Size(45, 31);
             this.buttonendnext.TabIndex = 16;
@@ -444,10 +463,11 @@
             this.tabControl1.Controls.Add(this.tabPagedsdvchinhthuc);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 130);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(949, 361);
+            this.tabControl1.Size = new System.Drawing.Size(961, 378);
             this.tabControl1.TabIndex = 17;
             // 
             // tabPagedsdvchinhthuc
@@ -456,7 +476,7 @@
             this.tabPagedsdvchinhthuc.Location = new System.Drawing.Point(4, 4);
             this.tabPagedsdvchinhthuc.Name = "tabPagedsdvchinhthuc";
             this.tabPagedsdvchinhthuc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagedsdvchinhthuc.Size = new System.Drawing.Size(941, 335);
+            this.tabPagedsdvchinhthuc.Size = new System.Drawing.Size(953, 352);
             this.tabPagedsdvchinhthuc.TabIndex = 0;
             this.tabPagedsdvchinhthuc.Text = "Danh sách Đảng viên chính thức";
             this.tabPagedsdvchinhthuc.UseVisualStyleBackColor = true;
@@ -465,11 +485,14 @@
             // 
             this.dataGridViewdanhsach.AllowUserToAddRows = false;
             this.dataGridViewdanhsach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewdanhsach.Location = new System.Drawing.Point(-4, 3);
+            this.dataGridViewdanhsach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewdanhsach.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewdanhsach.Name = "dataGridViewdanhsach";
             this.dataGridViewdanhsach.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridViewdanhsach.RowHeadersVisible = false;
+            this.dataGridViewdanhsach.RowHeadersWidth = 40;
             this.dataGridViewdanhsach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewdanhsach.Size = new System.Drawing.Size(942, 323);
+            this.dataGridViewdanhsach.Size = new System.Drawing.Size(947, 346);
             this.dataGridViewdanhsach.TabIndex = 0;
             this.dataGridViewdanhsach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewdanhsach_CellContentClick);
             this.dataGridViewdanhsach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewdanhsach_CellContentClick);
@@ -479,7 +502,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(941, 335);
+            this.tabPage2.Size = new System.Drawing.Size(953, 352);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -489,35 +512,58 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(941, 335);
+            this.tabPage3.Size = new System.Drawing.Size(953, 352);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 81);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.comboBoxloc);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxtimkiem);
+            this.splitContainer1.Panel1.Controls.Add(this.labeltongtrang);
+            this.splitContainer1.Panel1.Controls.Add(this.buttontimkiem);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxsotrang);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonendpre);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonnext);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonpre);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonendnext);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
+            this.splitContainer1.Size = new System.Drawing.Size(961, 422);
+            this.splitContainer1.SplitterDistance = 40;
+            this.splitContainer1.TabIndex = 18;
             // 
             // formhethongquanly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(961, 503);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.buttonendnext);
-            this.Controls.Add(this.labeltongtrang);
-            this.Controls.Add(this.textBoxsotrang);
-            this.Controls.Add(this.buttonnext);
-            this.Controls.Add(this.buttonpre);
-            this.Controls.Add(this.buttonendpre);
-            this.Controls.Add(this.buttontimkiem);
-            this.Controls.Add(this.textBoxtimkiem);
-            this.Controls.Add(this.comboBoxloc);
-            this.Controls.Add(this.toolStripquanlyhoso);
             this.Controls.Add(this.labeltb3);
             this.Controls.Add(this.labeltb2);
             this.Controls.Add(this.labeltb1);
             this.Controls.Add(this.pictureBoxlogo);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.toolStripquanlyhoso);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "formhethongquanly";
             this.Text = "HỆ THỐNG QUẢN LÝ ĐẢNG VIÊN";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formhethongquanly_FormClosing);
             this.Load += new System.EventHandler(this.formhethongquanly_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -527,6 +573,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPagedsdvchinhthuc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewdanhsach)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -578,5 +629,6 @@
         private System.Windows.Forms.DataGridView dataGridViewdanhsach;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

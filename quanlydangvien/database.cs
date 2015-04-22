@@ -47,16 +47,11 @@ namespace quanlydangvien
                 string mk = login.GetString(1);
                 string ht = login.GetString(2);
                 int cd = login.GetInt32(3);
-                if (cd == 1)
-                {
-                    curuser = new vanphongchibo(tk, mk, ht, cd);
 
-                }
-                else
-                {
-                    curuser = new vanphongdanguy(tk, mk, ht, cd);
-                }
-                // connect.Close();
+                curuser = new vanphongchibo(tk, mk, ht, cd);
+
+
+
             }
             return curuser;
         }
@@ -157,7 +152,8 @@ namespace quanlydangvien
             cmd.Connection = connect;
             cmd.ExecuteNonQuery();
         }
-        public bool kttontaidangvien(dangvien dv){
+        public bool kttontaidangvien(dangvien dv)
+        {
             db_connection();
             cmd = new SqlCommand();
             cmd.CommandText = "SELECT MaDV FROM dangvien WHERE MaDV=@madv ";
@@ -191,15 +187,16 @@ namespace quanlydangvien
             cmd.Connection = connect;
             cmd.ExecuteNonQuery();
         }
-        public void themchibo(chibo cb){
+        public void themchibo(chibo cb)
+        {
             db_connection();
             cmd = new SqlCommand();
             cmd.CommandText = "INSERT INTO chibo(MaCB,TenCB)" +
                                             "VALUES(@MaCB,@TenCB) ";
             cmd.Parameters.AddWithValue("@TenCB", cb.TenCB);
             cmd.Parameters.AddWithValue("@MaCB", cb.MaCB);
-            
-            
+
+
             cmd.Connection = connect;
             cmd.ExecuteReader();
         }
@@ -208,11 +205,9 @@ namespace quanlydangvien
 
             db_connection();
             cmd = new SqlCommand();
-            cmd.CommandText = "UPDATE  dangvien SET MaCB=@MaCB,TenCB=@TenCB";
+            cmd.CommandText = "UPDATE   SET MaCB=@MaCB Where TenCB=@TenCB ";
             cmd.Parameters.AddWithValue("@TenCB", cb.TenCB);
             cmd.Parameters.AddWithValue("@MaCB", cb.MaCB);
-            
-            
             cmd.Connection = connect;
             cmd.ExecuteNonQuery();
         }
@@ -230,6 +225,104 @@ namespace quanlydangvien
             }
             else return false;
         }
+        public DataSet timkiemtendv(string ten)
+        {
+            db_connection();
+            string hoten = "%" + ten + "%";
+            cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM dangvien WHERE hoten like @hoten ";
+            cmd.Parameters.AddWithValue("@hoten", hoten);
+            cmd.Connection = connect;
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            return ds;
+        }
+
+        public DataSet pagingdangvien(int start, string ten, string macb)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            if (ten != "")
+            {
+                string hoten = "%" + ten + "%";
+                cmd.CommandText = "SELECT * FROM dangvien WHERE hoten like @hoten ";
+                cmd.Parameters.AddWithValue("@hoten", hoten);
+            }
+            else if (macb != "")
+            {
+                cmd.CommandText = "SELECT * FROM dangvien WHERE MaCB=@macb";
+                cmd.Parameters.AddWithValue("@macb", macb);
+            }
+            else
+            {
+                cmd.CommandText = "SELECT * FROM dangvien  ";
+            }
+            cmd.Connection = connect;
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds, start, 10, "bang_dangvien");
+            return ds;
+        }
+        public DataSet pagingchibo(int start, string ten, string macb)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            if (ten != "")
+            {
+                string hoten = "%" + ten + "%";
+                cmd.CommandText = "SELECT * FROM dangvien WHERE hoten like @hoten ";
+                cmd.Parameters.AddWithValue("@hoten", hoten);
+            }
+            else if (macb != "")
+            {
+                cmd.CommandText = "SELECT * FROM dangvien WHERE MaCB=@macb";
+                cmd.Parameters.AddWithValue("@macb", macb);
+            }
+            else
+            {
+                cmd.CommandText = "SELECT chibo.TenCB,COUNT(DISTINCT dangvien.MaDV) AS sodangvien FROM dangvien,chibo WHERE dangvien.MaCB = chibo.MaCB GROUP BY chibo.TenCB ";
+            }
+            cmd.Connection = connect;
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds, start, 10, "bang_chibo");
+            return ds;
+        }
+
+        public bool doimatkhau(vanphongchibo vpcb)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "UPDATE users SET matkhau=@matkhau where taikhoan=@taikhoan ";
+            cmd.Parameters.AddWithValue("@matkhau", vpcb.Matkhau);
+            cmd.Parameters.AddWithValue("@taikhoan", vpcb.Taikhoan);
+            cmd.Connection = connect;
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public List<chibo> dschibocbb()
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM chibo";
+            cmd.Connection = connect;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<chibo> list = new List<chibo>();
+            chibo cb;
+            while (reader.Read())
+            {
+                cb = new chibo(reader.GetString(0), reader.GetString(1));
+                list.Add(cb);
+            }
+            return list;
+        }
+
+
     }
 
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace quanlydangvien
 {
-    class vanphongchibo
+    public class vanphongchibo
     {
         private string taikhoan;
         private string matkhau;
         private string hoten;
         private int capdo;
 
-
+        database db = new database();
         public string Taikhoan
         {
             get
@@ -65,9 +65,10 @@ namespace quanlydangvien
             hoten = ht;
             capdo = cd;
         }
-        public void DoiMatKhau()
+        public bool DoiMatKhau()
         {
-
+            return db.doimatkhau(this);
+            
         }
         public void Thoat()
         {

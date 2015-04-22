@@ -15,7 +15,11 @@ namespace quanlydangvien
         database db = new database();
         DataSet ds = new DataSet();
         string form;
-        public formhethongquanly()
+        vanphongchibo user;
+        int start;
+        int totalrecord;
+        int pages;
+        public formhethongquanly(vanphongchibo vpcb)
         {
             InitializeComponent();
 
@@ -32,9 +36,21 @@ namespace quanlydangvien
             textBoxsotrang.Visible = false;
             tabControl1.Visible = false;
             dataGridViewdanhsach.Visible = false;
+            user = vpcb;
+            start = 0;
             if (form == "chibo") {
                 tabPagedsdvchinhthuc.Text = "Danh Sách Chi Bộ";
             }
+
+            //commbobox loc
+
+            comboBoxloc.Items.AddRange(db.dschibocbb().ToArray());  
+            comboBoxloc.DisplayMember = "tencb";
+            
+
+
+
+            textBoxsotrang.Text = (start / 10 + 1).ToString();
         }
 
         private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,11 +66,13 @@ namespace quanlydangvien
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
         private void thayĐổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Formdoimatkhau dmk = new Formdoimatkhau(user);
+            dmk.ShowDialog();
         }
 
         private void thêmĐảngViênToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +83,10 @@ namespace quanlydangvien
 
         private void danhSáchĐảngViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.TabPages.Clear();
+            tabControl1.TabPages.Add(tabPagedsdvchinhthuc);
+            tabControl1.TabPages.Add(tabPage2);
+            tabControl1.TabPages.Add(tabPage3);
 
             Anlogo();
             hiendanhsach();
@@ -73,13 +95,19 @@ namespace quanlydangvien
             tabPagedsdvchinhthuc.Text = "Danh Sách Đảng Viên";
             tabPage2.Text = "Danh Sách Đảng Viên Chính Thức";
             tabPage3.Text = "Danh Sách Đảng Viên Dự Bị";
-            ds = db.laydanhsachdangvien();
-            dataGridViewdanhsach.DataSource = ds.Tables[0];
-
-
-
+            loaddsdangvien("","");
+            totalrecord = ds.Tables[0].Rows.Count;
+            pages = totalrecord / 10;
+            labeltongtrang.Text = "Của " + (pages + 1).ToString();
+            
         }
+        private void loaddsdangvien(string ten, string macb)
+        {
 
+            ds = db.pagingdangvien(start, ten, macb);
+            dataGridViewdanhsach.DataSource = ds.Tables[0];
+            //dataGridViewdanhsach.DataMember = "bang_dangvien";
+        }
         private void toolStripButtonsua_Click(object sender, EventArgs e)
         {
 
@@ -109,14 +137,12 @@ namespace quanlydangvien
                     if (form == "dangvien")
                     {
                         db.xoadangvien(dataGridViewdanhsach.SelectedRows[0]);
-                        ds = db.laydanhsachdangvien();
-                        dataGridViewdanhsach.DataSource = ds.Tables[0];
+                        loaddsdangvien("","");
                     }
                     else if (form == "chibo")
                     {
                         db.xoachibo(dataGridViewdanhsach.SelectedRows[0]);
-                        ds = db.laydanhsachchibo();
-                        dataGridViewdanhsach.DataSource = ds.Tables[0];
+                        loaddschibo();
                     }
 
 
@@ -127,7 +153,8 @@ namespace quanlydangvien
 
         private void comboBoxloc_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            chibo cbselect = new chibo(((chibo)comboBoxloc.SelectedItem).MaCB, ((chibo)comboBoxloc.SelectedItem).TenCB);
+            loaddsdangvien("", cbselect.MaCB);
         }
 
         private void formhethongquanly_Load(object sender, EventArgs e)
@@ -154,13 +181,17 @@ namespace quanlydangvien
         {
             Anlogo();
             hiendanhsach();
-
+            start = 0;
             menuStrip1.Select();
             form = "chibo";
             tabPagedsdvchinhthuc.Text = "Danh Sách Chi Bộ";
             
-            ds = db.laydanhsachchibo();
+            ds = db.pagingchibo(start,"","");
             dataGridViewdanhsach.DataSource = ds.Tables[0];
+
+            tabControl1.TabPages.Remove(tabPage2);
+            tabControl1.TabPages.Remove(tabPage3);
+            
         }
         private void Anlogo()
         {
@@ -200,6 +231,106 @@ namespace quanlydangvien
                 Formthemchibo tcb = new Formthemchibo("THÊM CHI BỘ", null);
                 tcb.ShowDialog();
             }
+        }
+       
+        private void loaddschibo() {
+            ds = db.laydanhsachchibo();
+            dataGridViewdanhsach.DataSource = ds.Tables[0];
+        }
+
+        private void toolStripButtonlammoi_Click(object sender, EventArgs e)
+        {
+            if (form == "dangvien") {
+
+                loaddsdangvien("", "");
+            }
+            else if (form == "chibo") {
+                loaddschibo();
+            }
+        }
+
+        private void toolStripButtontimkiem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttontimkiem_Click(object sender, EventArgs e)
+        {
+            ds = db.timkiemtendv(textBoxtimkiem.Text);
+            dataGridViewdanhsach.DataSource = ds.Tables[0];
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void textBoxtimkiem_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBoxtimkiem_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBoxtimkiem.SelectAll();
+        }
+
+        private void textBoxtimkiem_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (textBoxtimkiem.Text == "") textBoxtimkiem.Text = "Nhập Tên Đảng Viên";
+        }
+
+        private void buttonpre_Click(object sender, EventArgs e)
+        {
+             start = start - 10;
+            if (start <= 0)
+            {
+                start = 0;
+            }
+            loaddsdangvien("","");
+            textBoxsotrang.Text =  (start / 10 + 1).ToString();
+        }
+
+        private void buttonnext_Click(object sender, EventArgs e)
+        {
+            start = start + 10;
+            if (start > totalrecord)
+            {
+                start = totalrecord -totalrecord%10;
+            }
+            loaddsdangvien("","");
+            textBoxsotrang.Text = (start / 10 + 1).ToString();
+        }
+
+        private void textBoxsotrang_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (textBoxsotrang.Text != null) {
+                if (e.KeyChar == (char)Keys.Enter) {
+                    start = (Int32.Parse(textBoxsotrang.Text)-1)*10;
+                    loaddsdangvien("","");
+                    
+                }
+            }
+        }
+
+        private void xuấtDanhSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new Frm_danhsachdangvien()).ShowDialog();
+        }
+
+        private void formhethongquanly_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void toolStripButtonketxuat_Click(object sender, EventArgs e)
+        {
+            (new Frm_danhsachdangvien()).ShowDialog();
+        }
+
+        private void toolStripButtontat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

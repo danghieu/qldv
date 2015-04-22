@@ -29,31 +29,30 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxtrinhdoct = new System.Windows.Forms.ComboBox();
+            this.comboBoxthuoctinh = new System.Windows.Forms.ComboBox();
+            this.comboBoxhocvi = new System.Windows.Forms.ComboBox();
+            this.comboBoxchucvudoan = new System.Windows.Forms.ComboBox();
+            this.comboBoxtongiao = new System.Windows.Forms.ComboBox();
+            this.comboBoxchucvudang = new System.Windows.Forms.ComboBox();
+            this.comboBoxdantoc = new System.Windows.Forms.ComboBox();
+            this.comboBoxchibosh = new System.Windows.Forms.ComboBox();
+            this.comboBoxgioitinh = new System.Windows.Forms.ComboBox();
+            this.comboBoxdonvicongtac = new System.Windows.Forms.ComboBox();
+            this.textBoxtendv = new System.Windows.Forms.TextBox();
+            this.labelthuoctinh = new System.Windows.Forms.Label();
+            this.labelchibosh = new System.Windows.Forms.Label();
+            this.labelchuccudoan = new System.Windows.Forms.Label();
+            this.labelchucvudang = new System.Windows.Forms.Label();
+            this.labeldonvicongtac = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labeltongiao = new System.Windows.Forms.Label();
+            this.labeldantoc = new System.Windows.Forms.Label();
+            this.labelgioitinh = new System.Windows.Forms.Label();
+            this.labeltuoitu = new System.Windows.Forms.Label();
             this.labeltendv = new System.Windows.Forms.Label();
             this.labeltimkiem = new System.Windows.Forms.Label();
-            this.labeldonvicongtac = new System.Windows.Forms.Label();
-            this.labelchibosh = new System.Windows.Forms.Label();
-            this.labelchucvudang = new System.Windows.Forms.Label();
-            this.labelchuccudoan = new System.Windows.Forms.Label();
-            this.labelthuoctinh = new System.Windows.Forms.Label();
-            this.textBoxtendv = new System.Windows.Forms.TextBox();
-            this.comboBoxdonvicongtac = new System.Windows.Forms.ComboBox();
-            this.comboBoxchibosh = new System.Windows.Forms.ComboBox();
-            this.comboBoxchucvudang = new System.Windows.Forms.ComboBox();
-            this.comboBoxchucvudoan = new System.Windows.Forms.ComboBox();
-            this.comboBoxthuoctinh = new System.Windows.Forms.ComboBox();
-            this.labeltuoitu = new System.Windows.Forms.Label();
-            this.labelden = new System.Windows.Forms.Label();
-            this.labelgioitinh = new System.Windows.Forms.Label();
-            this.labeldantoc = new System.Windows.Forms.Label();
-            this.labeltongiao = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBoxgioitinh = new System.Windows.Forms.ComboBox();
-            this.comboBoxdantoc = new System.Windows.Forms.ComboBox();
-            this.comboBoxtongiao = new System.Windows.Forms.ComboBox();
-            this.comboBoxhocvi = new System.Windows.Forms.ComboBox();
-            this.comboBoxtrinhdoct = new System.Windows.Forms.ComboBox();
             this.buttontimkiem = new System.Windows.Forms.Button();
             this.buttonlamrong = new System.Windows.Forms.Button();
             this.buttonthoat = new System.Windows.Forms.Button();
@@ -62,7 +61,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.comboBoxtrinhdoct);
             this.groupBox1.Controls.Add(this.comboBoxthuoctinh);
             this.groupBox1.Controls.Add(this.comboBoxhocvi);
@@ -79,7 +78,6 @@
             this.groupBox1.Controls.Add(this.labelchuccudoan);
             this.groupBox1.Controls.Add(this.labelchucvudang);
             this.groupBox1.Controls.Add(this.labeldonvicongtac);
-            this.groupBox1.Controls.Add(this.labelden);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.labeltongiao);
@@ -93,6 +91,202 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin tìm kiếm chi tiết";
+            // 
+            // comboBoxtrinhdoct
+            // 
+            this.comboBoxtrinhdoct.FormattingEnabled = true;
+            this.comboBoxtrinhdoct.Location = new System.Drawing.Point(573, 261);
+            this.comboBoxtrinhdoct.Name = "comboBoxtrinhdoct";
+            this.comboBoxtrinhdoct.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxtrinhdoct.TabIndex = 2;
+            this.comboBoxtrinhdoct.Text = "None";
+            // 
+            // comboBoxthuoctinh
+            // 
+            this.comboBoxthuoctinh.FormattingEnabled = true;
+            this.comboBoxthuoctinh.Location = new System.Drawing.Point(153, 261);
+            this.comboBoxthuoctinh.Name = "comboBoxthuoctinh";
+            this.comboBoxthuoctinh.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxthuoctinh.TabIndex = 2;
+            this.comboBoxthuoctinh.Text = "Quảng Nam";
+            // 
+            // comboBoxhocvi
+            // 
+            this.comboBoxhocvi.FormattingEnabled = true;
+            this.comboBoxhocvi.Location = new System.Drawing.Point(573, 214);
+            this.comboBoxhocvi.Name = "comboBoxhocvi";
+            this.comboBoxhocvi.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxhocvi.TabIndex = 2;
+            this.comboBoxhocvi.Text = "Thạc sỹ";
+            // 
+            // comboBoxchucvudoan
+            // 
+            this.comboBoxchucvudoan.FormattingEnabled = true;
+            this.comboBoxchucvudoan.Location = new System.Drawing.Point(153, 214);
+            this.comboBoxchucvudoan.Name = "comboBoxchucvudoan";
+            this.comboBoxchucvudoan.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxchucvudoan.TabIndex = 2;
+            this.comboBoxchucvudoan.Text = "Đoàn viên";
+            // 
+            // comboBoxtongiao
+            // 
+            this.comboBoxtongiao.FormattingEnabled = true;
+            this.comboBoxtongiao.Location = new System.Drawing.Point(573, 168);
+            this.comboBoxtongiao.Name = "comboBoxtongiao";
+            this.comboBoxtongiao.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxtongiao.TabIndex = 2;
+            this.comboBoxtongiao.Text = "None";
+            // 
+            // comboBoxchucvudang
+            // 
+            this.comboBoxchucvudang.FormattingEnabled = true;
+            this.comboBoxchucvudang.Location = new System.Drawing.Point(153, 168);
+            this.comboBoxchucvudang.Name = "comboBoxchucvudang";
+            this.comboBoxchucvudang.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxchucvudang.TabIndex = 2;
+            this.comboBoxchucvudang.Text = "Đảng viên";
+            // 
+            // comboBoxdantoc
+            // 
+            this.comboBoxdantoc.FormattingEnabled = true;
+            this.comboBoxdantoc.Location = new System.Drawing.Point(573, 120);
+            this.comboBoxdantoc.Name = "comboBoxdantoc";
+            this.comboBoxdantoc.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxdantoc.TabIndex = 2;
+            this.comboBoxdantoc.Text = "Kinh";
+            // 
+            // comboBoxchibosh
+            // 
+            this.comboBoxchibosh.FormattingEnabled = true;
+            this.comboBoxchibosh.Location = new System.Drawing.Point(153, 120);
+            this.comboBoxchibosh.Name = "comboBoxchibosh";
+            this.comboBoxchibosh.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxchibosh.TabIndex = 2;
+            this.comboBoxchibosh.Text = "11PFIEV3";
+            // 
+            // comboBoxgioitinh
+            // 
+            this.comboBoxgioitinh.FormattingEnabled = true;
+            this.comboBoxgioitinh.Location = new System.Drawing.Point(573, 82);
+            this.comboBoxgioitinh.Name = "comboBoxgioitinh";
+            this.comboBoxgioitinh.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxgioitinh.TabIndex = 2;
+            this.comboBoxgioitinh.Text = "Nam";
+            // 
+            // comboBoxdonvicongtac
+            // 
+            this.comboBoxdonvicongtac.FormattingEnabled = true;
+            this.comboBoxdonvicongtac.Location = new System.Drawing.Point(153, 82);
+            this.comboBoxdonvicongtac.Name = "comboBoxdonvicongtac";
+            this.comboBoxdonvicongtac.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxdonvicongtac.TabIndex = 2;
+            this.comboBoxdonvicongtac.Text = "Khoa CNTT";
+            // 
+            // textBoxtendv
+            // 
+            this.textBoxtendv.Location = new System.Drawing.Point(153, 37);
+            this.textBoxtendv.Name = "textBoxtendv";
+            this.textBoxtendv.Size = new System.Drawing.Size(245, 20);
+            this.textBoxtendv.TabIndex = 1;
+            // 
+            // labelthuoctinh
+            // 
+            this.labelthuoctinh.AutoSize = true;
+            this.labelthuoctinh.Location = new System.Drawing.Point(24, 269);
+            this.labelthuoctinh.Name = "labelthuoctinh";
+            this.labelthuoctinh.Size = new System.Drawing.Size(58, 13);
+            this.labelthuoctinh.TabIndex = 0;
+            this.labelthuoctinh.Text = "Thuộc tỉnh";
+            // 
+            // labelchibosh
+            // 
+            this.labelchibosh.AutoSize = true;
+            this.labelchibosh.Location = new System.Drawing.Point(24, 128);
+            this.labelchibosh.Name = "labelchibosh";
+            this.labelchibosh.Size = new System.Drawing.Size(83, 13);
+            this.labelchibosh.TabIndex = 0;
+            this.labelchibosh.Text = "Chi bộ sinh hoạt";
+            // 
+            // labelchuccudoan
+            // 
+            this.labelchuccudoan.AutoSize = true;
+            this.labelchuccudoan.Location = new System.Drawing.Point(24, 222);
+            this.labelchuccudoan.Name = "labelchuccudoan";
+            this.labelchuccudoan.Size = new System.Drawing.Size(76, 13);
+            this.labelchuccudoan.TabIndex = 0;
+            this.labelchuccudoan.Text = "Chức vụ Đoàn";
+            // 
+            // labelchucvudang
+            // 
+            this.labelchucvudang.AutoSize = true;
+            this.labelchucvudang.Location = new System.Drawing.Point(24, 176);
+            this.labelchucvudang.Name = "labelchucvudang";
+            this.labelchucvudang.Size = new System.Drawing.Size(76, 13);
+            this.labelchucvudang.TabIndex = 0;
+            this.labelchucvudang.Text = "Chức vụ Đảng";
+            // 
+            // labeldonvicongtac
+            // 
+            this.labeldonvicongtac.AutoSize = true;
+            this.labeldonvicongtac.Location = new System.Drawing.Point(24, 90);
+            this.labeldonvicongtac.Name = "labeldonvicongtac";
+            this.labeldonvicongtac.Size = new System.Drawing.Size(84, 13);
+            this.labeldonvicongtac.TabIndex = 0;
+            this.labeldonvicongtac.Text = "Đơn vị Công tác";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(464, 269);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Trình dộ chính trị";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(464, 222);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Học vị";
+            // 
+            // labeltongiao
+            // 
+            this.labeltongiao.AutoSize = true;
+            this.labeltongiao.Location = new System.Drawing.Point(464, 176);
+            this.labeltongiao.Name = "labeltongiao";
+            this.labeltongiao.Size = new System.Drawing.Size(49, 13);
+            this.labeltongiao.TabIndex = 0;
+            this.labeltongiao.Text = "Tôn giáo";
+            // 
+            // labeldantoc
+            // 
+            this.labeldantoc.AutoSize = true;
+            this.labeldantoc.Location = new System.Drawing.Point(464, 128);
+            this.labeldantoc.Name = "labeldantoc";
+            this.labeldantoc.Size = new System.Drawing.Size(49, 13);
+            this.labeldantoc.TabIndex = 0;
+            this.labeldantoc.Text = "Dân Tộc";
+            // 
+            // labelgioitinh
+            // 
+            this.labelgioitinh.AutoSize = true;
+            this.labelgioitinh.Location = new System.Drawing.Point(464, 90);
+            this.labelgioitinh.Name = "labelgioitinh";
+            this.labelgioitinh.Size = new System.Drawing.Size(47, 13);
+            this.labelgioitinh.TabIndex = 0;
+            this.labelgioitinh.Text = "Giới tính";
+            // 
+            // labeltuoitu
+            // 
+            this.labeltuoitu.AutoSize = true;
+            this.labeltuoitu.Location = new System.Drawing.Point(464, 44);
+            this.labeltuoitu.Name = "labeltuoitu";
+            this.labeltuoitu.Size = new System.Drawing.Size(40, 13);
+            this.labeltuoitu.TabIndex = 0;
+            this.labeltuoitu.Text = "Tuổi từ";
             // 
             // labeltendv
             // 
@@ -113,211 +307,6 @@
             this.labeltimkiem.Size = new System.Drawing.Size(140, 33);
             this.labeltimkiem.TabIndex = 0;
             this.labeltimkiem.Text = "Tìm Kiếm";
-            // 
-            // labeldonvicongtac
-            // 
-            this.labeldonvicongtac.AutoSize = true;
-            this.labeldonvicongtac.Location = new System.Drawing.Point(24, 90);
-            this.labeldonvicongtac.Name = "labeldonvicongtac";
-            this.labeldonvicongtac.Size = new System.Drawing.Size(84, 13);
-            this.labeldonvicongtac.TabIndex = 0;
-            this.labeldonvicongtac.Text = "Đơn vị Công tác";
-            // 
-            // labelchibosh
-            // 
-            this.labelchibosh.AutoSize = true;
-            this.labelchibosh.Location = new System.Drawing.Point(24, 128);
-            this.labelchibosh.Name = "labelchibosh";
-            this.labelchibosh.Size = new System.Drawing.Size(83, 13);
-            this.labelchibosh.TabIndex = 0;
-            this.labelchibosh.Text = "Chi bộ sinh hoạt";
-            // 
-            // labelchucvudang
-            // 
-            this.labelchucvudang.AutoSize = true;
-            this.labelchucvudang.Location = new System.Drawing.Point(24, 176);
-            this.labelchucvudang.Name = "labelchucvudang";
-            this.labelchucvudang.Size = new System.Drawing.Size(76, 13);
-            this.labelchucvudang.TabIndex = 0;
-            this.labelchucvudang.Text = "Chức vụ Đảng";
-            // 
-            // labelchuccudoan
-            // 
-            this.labelchuccudoan.AutoSize = true;
-            this.labelchuccudoan.Location = new System.Drawing.Point(24, 222);
-            this.labelchuccudoan.Name = "labelchuccudoan";
-            this.labelchuccudoan.Size = new System.Drawing.Size(76, 13);
-            this.labelchuccudoan.TabIndex = 0;
-            this.labelchuccudoan.Text = "Chức vụ Đoàn";
-            // 
-            // labelthuoctinh
-            // 
-            this.labelthuoctinh.AutoSize = true;
-            this.labelthuoctinh.Location = new System.Drawing.Point(24, 269);
-            this.labelthuoctinh.Name = "labelthuoctinh";
-            this.labelthuoctinh.Size = new System.Drawing.Size(58, 13);
-            this.labelthuoctinh.TabIndex = 0;
-            this.labelthuoctinh.Text = "Thuộc tỉnh";
-            // 
-            // textBoxtendv
-            // 
-            this.textBoxtendv.Location = new System.Drawing.Point(153, 37);
-            this.textBoxtendv.Name = "textBoxtendv";
-            this.textBoxtendv.Size = new System.Drawing.Size(245, 20);
-            this.textBoxtendv.TabIndex = 1;
-            // 
-            // comboBoxdonvicongtac
-            // 
-            this.comboBoxdonvicongtac.FormattingEnabled = true;
-            this.comboBoxdonvicongtac.Location = new System.Drawing.Point(153, 82);
-            this.comboBoxdonvicongtac.Name = "comboBoxdonvicongtac";
-            this.comboBoxdonvicongtac.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxdonvicongtac.TabIndex = 2;
-            this.comboBoxdonvicongtac.Text = "Khoa CNTT";
-            // 
-            // comboBoxchibosh
-            // 
-            this.comboBoxchibosh.FormattingEnabled = true;
-            this.comboBoxchibosh.Location = new System.Drawing.Point(153, 120);
-            this.comboBoxchibosh.Name = "comboBoxchibosh";
-            this.comboBoxchibosh.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxchibosh.TabIndex = 2;
-            this.comboBoxchibosh.Text = "11PFIEV3";
-            // 
-            // comboBoxchucvudang
-            // 
-            this.comboBoxchucvudang.FormattingEnabled = true;
-            this.comboBoxchucvudang.Location = new System.Drawing.Point(153, 168);
-            this.comboBoxchucvudang.Name = "comboBoxchucvudang";
-            this.comboBoxchucvudang.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxchucvudang.TabIndex = 2;
-            this.comboBoxchucvudang.Text = "Đảng viên";
-            // 
-            // comboBoxchucvudoan
-            // 
-            this.comboBoxchucvudoan.FormattingEnabled = true;
-            this.comboBoxchucvudoan.Location = new System.Drawing.Point(153, 214);
-            this.comboBoxchucvudoan.Name = "comboBoxchucvudoan";
-            this.comboBoxchucvudoan.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxchucvudoan.TabIndex = 2;
-            this.comboBoxchucvudoan.Text = "Đoàn viên";
-            // 
-            // comboBoxthuoctinh
-            // 
-            this.comboBoxthuoctinh.FormattingEnabled = true;
-            this.comboBoxthuoctinh.Location = new System.Drawing.Point(153, 261);
-            this.comboBoxthuoctinh.Name = "comboBoxthuoctinh";
-            this.comboBoxthuoctinh.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxthuoctinh.TabIndex = 2;
-            this.comboBoxthuoctinh.Text = "Quảng Nam";
-            // 
-            // labeltuoitu
-            // 
-            this.labeltuoitu.AutoSize = true;
-            this.labeltuoitu.Location = new System.Drawing.Point(464, 44);
-            this.labeltuoitu.Name = "labeltuoitu";
-            this.labeltuoitu.Size = new System.Drawing.Size(40, 13);
-            this.labeltuoitu.TabIndex = 0;
-            this.labeltuoitu.Text = "Tuổi từ";
-            // 
-            // labelden
-            // 
-            this.labelden.AutoSize = true;
-            this.labelden.Location = new System.Drawing.Point(658, 45);
-            this.labelden.Name = "labelden";
-            this.labelden.Size = new System.Drawing.Size(79, 13);
-            this.labelden.TabIndex = 0;
-            this.labelden.Text = "Tên Đảng Viên";
-            // 
-            // labelgioitinh
-            // 
-            this.labelgioitinh.AutoSize = true;
-            this.labelgioitinh.Location = new System.Drawing.Point(464, 90);
-            this.labelgioitinh.Name = "labelgioitinh";
-            this.labelgioitinh.Size = new System.Drawing.Size(47, 13);
-            this.labelgioitinh.TabIndex = 0;
-            this.labelgioitinh.Text = "Giới tính";
-            // 
-            // labeldantoc
-            // 
-            this.labeldantoc.AutoSize = true;
-            this.labeldantoc.Location = new System.Drawing.Point(464, 128);
-            this.labeldantoc.Name = "labeldantoc";
-            this.labeldantoc.Size = new System.Drawing.Size(49, 13);
-            this.labeldantoc.TabIndex = 0;
-            this.labeldantoc.Text = "Dân Tộc";
-            // 
-            // labeltongiao
-            // 
-            this.labeltongiao.AutoSize = true;
-            this.labeltongiao.Location = new System.Drawing.Point(464, 176);
-            this.labeltongiao.Name = "labeltongiao";
-            this.labeltongiao.Size = new System.Drawing.Size(49, 13);
-            this.labeltongiao.TabIndex = 0;
-            this.labeltongiao.Text = "Tôn giáo";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(464, 222);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Học vị";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(464, 269);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Trình dộ chính trị";
-            // 
-            // comboBoxgioitinh
-            // 
-            this.comboBoxgioitinh.FormattingEnabled = true;
-            this.comboBoxgioitinh.Location = new System.Drawing.Point(573, 82);
-            this.comboBoxgioitinh.Name = "comboBoxgioitinh";
-            this.comboBoxgioitinh.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxgioitinh.TabIndex = 2;
-            this.comboBoxgioitinh.Text = "Nam";
-            // 
-            // comboBoxdantoc
-            // 
-            this.comboBoxdantoc.FormattingEnabled = true;
-            this.comboBoxdantoc.Location = new System.Drawing.Point(573, 120);
-            this.comboBoxdantoc.Name = "comboBoxdantoc";
-            this.comboBoxdantoc.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxdantoc.TabIndex = 2;
-            this.comboBoxdantoc.Text = "Kinh";
-            // 
-            // comboBoxtongiao
-            // 
-            this.comboBoxtongiao.FormattingEnabled = true;
-            this.comboBoxtongiao.Location = new System.Drawing.Point(573, 168);
-            this.comboBoxtongiao.Name = "comboBoxtongiao";
-            this.comboBoxtongiao.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxtongiao.TabIndex = 2;
-            this.comboBoxtongiao.Text = "None";
-            // 
-            // comboBoxhocvi
-            // 
-            this.comboBoxhocvi.FormattingEnabled = true;
-            this.comboBoxhocvi.Location = new System.Drawing.Point(573, 214);
-            this.comboBoxhocvi.Name = "comboBoxhocvi";
-            this.comboBoxhocvi.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxhocvi.TabIndex = 2;
-            this.comboBoxhocvi.Text = "Thạc sỹ";
-            // 
-            // comboBoxtrinhdoct
-            // 
-            this.comboBoxtrinhdoct.FormattingEnabled = true;
-            this.comboBoxtrinhdoct.Location = new System.Drawing.Point(573, 261);
-            this.comboBoxtrinhdoct.Name = "comboBoxtrinhdoct";
-            this.comboBoxtrinhdoct.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxtrinhdoct.TabIndex = 2;
-            this.comboBoxtrinhdoct.Text = "None";
             // 
             // buttontimkiem
             // 
@@ -382,7 +371,6 @@
         private System.Windows.Forms.Label labelchuccudoan;
         private System.Windows.Forms.Label labelchucvudang;
         private System.Windows.Forms.Label labeldonvicongtac;
-        private System.Windows.Forms.Label labelden;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labeltongiao;

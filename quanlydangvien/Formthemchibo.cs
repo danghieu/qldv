@@ -44,7 +44,13 @@ namespace quanlydangvien
                 cb.suachibo();
             }
             else {
-                cb.themchibo();
+                if (cb.themchibo())
+                {
+                    this.Close();
+                }
+                else {
+                    MessageBox.Show(null, "Chi Bộ đã tồn tại", "Cảnh báo", MessageBoxButtons.OK);
+                }
                 
             }
         }

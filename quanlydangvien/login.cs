@@ -41,7 +41,7 @@ namespace quanlydangvien
             {
 
                 this.Hide();
-                formhethongquanly htql = new formhethongquanly();
+                formhethongquanly htql = new formhethongquanly(curuser);
                 htql.Show();
             }
             else labelthongbao.Visible = true;
