@@ -34,7 +34,7 @@ namespace quanlydangvien
             vanphongchibo curuser = null;
             db_connection();
             cmd = new SqlCommand();
-            cmd.CommandText = "Select taikhoan,matkhau,hoten,capdo from users where taikhoan=@taikhoan and matkhau=@matkhau";
+            cmd.CommandText = "Select taikhoan,matkhau,hoten,capdo,thongtin from users where taikhoan=@taikhoan and matkhau=@matkhau";
             cmd.Parameters.AddWithValue("@taikhoan", taikhoan);
             cmd.Parameters.AddWithValue("@matkhau", matkhau);
             cmd.Connection = connect;
@@ -47,8 +47,9 @@ namespace quanlydangvien
                 string mk = login.GetString(1);
                 string ht = login.GetString(2);
                 int cd = login.GetInt32(3);
+                string thongtin = login.GetString(4);
 
-                curuser = new vanphongchibo(tk, mk, ht, cd);
+                curuser = new vanphongchibo(tk, mk, ht, cd,thongtin);
 
 
 
@@ -166,6 +167,20 @@ namespace quanlydangvien
             }
             else return false;
         }
+        public bool kttontaiuser(vanphongchibo u)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "SELECT taikhoan FROM users WHERE taikhoan=@taikhoan ";
+            cmd.Parameters.AddWithValue("@taikhoan", u.Taikhoan);
+            cmd.Connection = connect;
+            SqlDataReader kt = cmd.ExecuteReader();
+            if (kt.Read())
+            {
+                return true;
+            }
+            else return false;
+        }
         public DataSet laydanhsachchibo()
         {
             db_connection();
@@ -200,16 +215,61 @@ namespace quanlydangvien
             cmd.Connection = connect;
             cmd.ExecuteReader();
         }
-        public void suachibo(chibo cb)
+        public bool xoauser(vanphongchibo u)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            
+            cmd.CommandText = "DELETE FROM users WHERE taikhoan=@taikhoan";
+            cmd.Parameters.AddWithValue("@taikhoan", u.Taikhoan);
+            cmd.Connection = connect;
+            if (cmd.ExecuteNonQuery() == 1) {
+                return true;
+            }
+            return false;
+        }
+
+        public void themuser(vanphongchibo u)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "INSERT INTO users(taikhoan,matkhau,capdo,hoten,thongtin)" +
+                                            "VALUES(@taikhoan,@matkhau,@capdo,@hoten,@thongtin) ";
+            cmd.Parameters.AddWithValue("@taikhoan",u.Taikhoan);
+            cmd.Parameters.AddWithValue("@matkhau", u.Matkhau);
+            cmd.Parameters.AddWithValue("@hoten", u.Hoten);
+            cmd.Parameters.AddWithValue("@capdo", u.Capdo);
+            cmd.Parameters.AddWithValue("@thongtin", u.Thongtin);
+            cmd.Connection = connect;
+            cmd.ExecuteReader();
+        }
+        public bool suauser(vanphongchibo u)
         {
 
             db_connection();
             cmd = new SqlCommand();
-            cmd.CommandText = "UPDATE   SET MaCB=@MaCB Where TenCB=@TenCB ";
+            cmd.CommandText = "UPDATE users SET hoten=@hoten, thongtin=@thongtin  Where taikhoan=@taikhoan ";
+            cmd.Parameters.AddWithValue("@taikhoan", u.Taikhoan);
+            cmd.Parameters.AddWithValue("@hoten", u.Hoten);
+            cmd.Parameters.AddWithValue("@thongtin", u.Thongtin);
+
+            cmd.Connection = connect;
+
+            if (cmd.ExecuteNonQuery() == 1) return true;
+            else return false;
+        }
+        public bool suachibo(chibo cb)
+        {
+
+            db_connection();
+            cmd = new SqlCommand();
+            cmd.CommandText = "UPDATE chibo SET TenCB=@TenCB Where MaCB=@MaCB ";
             cmd.Parameters.AddWithValue("@TenCB", cb.TenCB);
             cmd.Parameters.AddWithValue("@MaCB", cb.MaCB);
             cmd.Connection = connect;
-            cmd.ExecuteNonQuery();
+
+            if (cmd.ExecuteNonQuery() == 1) return true;
+            else return false;
         }
         public bool kttontaichibo(chibo cb)
         {
@@ -239,21 +299,34 @@ namespace quanlydangvien
             return ds;
         }
 
-        public DataSet pagingdangvien(int start, string ten, string macb)
+        public DataSet pagingdangvien(int start, string ten, string macb,string trangthai)
         {
             db_connection();
             cmd = new SqlCommand();
-            if (ten != "")
+            if (ten != "" && trangthai != "") {
+                string hoten = "%" + ten + "%";
+                cmd.CommandText = "SELECT * FROM dangvien WHERE tinhtrangDV=@trangthai and hoten like @hoten ";
+                cmd.Parameters.AddWithValue("@hoten", hoten);
+                cmd.Parameters.AddWithValue("@trangthai", trangthai);
+            }
+            else if (ten != "")
             {
                 string hoten = "%" + ten + "%";
-                cmd.CommandText = "SELECT * FROM dangvien WHERE hoten like @hoten ";
+                cmd.CommandText = "SELECT * FROM dangvien WHERE   hoten like @hoten  ";
                 cmd.Parameters.AddWithValue("@hoten", hoten);
+                
             }
             else if (macb != "")
             {
                 cmd.CommandText = "SELECT * FROM dangvien WHERE MaCB=@macb";
                 cmd.Parameters.AddWithValue("@macb", macb);
             }
+            else if (trangthai !="")
+            {
+                cmd.CommandText = "SELECT * FROM dangvien WHERE tinhtrangDV=@trangthai";
+                cmd.Parameters.AddWithValue("@trangthai", trangthai);
+            }
+            
             else
             {
                 cmd.CommandText = "SELECT * FROM dangvien  ";
@@ -261,7 +334,7 @@ namespace quanlydangvien
             cmd.Connection = connect;
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            sda.Fill(ds, start, 10, "bang_dangvien");
+            sda.Fill(ds, start, 15, "bang_dangvien");
             return ds;
         }
         public DataSet pagingchibo(int start, string ten, string macb)
@@ -270,23 +343,45 @@ namespace quanlydangvien
             cmd = new SqlCommand();
             if (ten != "")
             {
-                string hoten = "%" + ten + "%";
-                cmd.CommandText = "SELECT * FROM dangvien WHERE hoten like @hoten ";
-                cmd.Parameters.AddWithValue("@hoten", hoten);
+                string tencb = "%" + ten + "%";
+                cmd.CommandText = "SELECT * FROM chibo WHERE TenCB like @tencb ";
+                cmd.Parameters.AddWithValue("@tencb", tencb);
             }
             else if (macb != "")
             {
-                cmd.CommandText = "SELECT * FROM dangvien WHERE MaCB=@macb";
+                cmd.CommandText = "SELECT * FROM chibo WHERE MaCB=@macb";
                 cmd.Parameters.AddWithValue("@macb", macb);
             }
             else
             {
-                cmd.CommandText = "SELECT chibo.TenCB,COUNT(DISTINCT dangvien.MaDV) AS sodangvien FROM dangvien,chibo WHERE dangvien.MaCB = chibo.MaCB GROUP BY chibo.TenCB ";
+                cmd.CommandText = "SELECT t1.TenCB, t3.sodangvien,t1.sodangvienchinhthuc , t2.sodangviendubi, t4.dangviennu FROM ( SELECT chibo.TenCB,COUNT(DISTINCT dangvien.MaDV) AS sodangvienchinhthuc FROM dangvien,chibo WHERE dangvien.MaCB = chibo.MaCB and dangvien.tinhtrangDV='DVCT' GROUP BY chibo.TenCB )as t1 , (SELECT chibo.TenCB,COUNT(DISTINCT dangvien.MaDV) AS sodangviendubi FROM dangvien,chibo WHERE dangvien.MaCB = chibo.MaCB and dangvien.tinhtrangDV='DVDB' GROUP BY chibo.TenCB) as t2,(SELECT chibo.TenCB,COUNT(DISTINCT dangvien.MaDV) AS sodangvien FROM dangvien,chibo WHERE dangvien.MaCB = chibo.MaCB GROUP BY chibo.TenCB )as t3,(SELECT chibo.TenCB,COUNT(DISTINCT dangvien.gioitinh) AS dangviennu FROM dangvien,chibo WHERE dangvien.MaCB = chibo.MaCB and dangvien.gioitinh='Nu' GROUP BY chibo.TenCB)as t4 WHERE t1.TenCB = t2.TenCB and t1.TenCB= t3.TenCB and t1.TenCB= t4.TenCB";
             }
             cmd.Connection = connect;
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            sda.Fill(ds, start, 10, "bang_chibo");
+            sda.Fill(ds, start, 15, "bang_chibo");
+            return ds;
+        }
+
+        public DataSet pagingnguoidung(int start, string hoten)
+        {
+            db_connection();
+            cmd = new SqlCommand();
+            if (hoten != "")
+            {
+                string ht = "%" + hoten + "%";
+                cmd.CommandText = "SELECT * FROM users WHERE hoten like @hoten ";
+                cmd.Parameters.AddWithValue("@hoten", ht);
+            }
+            
+            else
+            {
+                cmd.CommandText = "SELECT taikhoan,hoten, thongtin FROM users";
+            }
+            cmd.Connection = connect;
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds, start, 15, "bang_nguoidung");
             return ds;
         }
 

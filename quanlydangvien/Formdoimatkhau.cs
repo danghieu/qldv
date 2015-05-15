@@ -22,12 +22,22 @@ namespace quanlydangvien
 
         private void buttonxacnhan_Click(object sender, EventArgs e)
         {
-            if (textBoxmatkhaucu.Text == "" || textBoxmatkhaumoi.Text == "" || textBoxxacnhanmatkhau.Text == "")
+            if (textBoxmatkhaucu.Text == "" )
             {
+                anthongbao();
+                labelmatkhaucu.Visible = true;
                 
-                labeltb.Visible = true;
             }
-            else if (user.Matkhau != textBoxmatkhaucu.Text)
+            if(textBoxmatkhaumoi.Text == ""){
+                anthongbao();
+                labelmkmoi.Visible = true;
+            }
+            if(textBoxxacnhanmatkhau.Text == ""){
+                anthongbao();
+                labelxacnhan.Visible = true;
+            }
+
+             if (user.Matkhau != textBoxmatkhaucu.Text)
             {
                 anthongbao();
                 labelmatkhaucu.Visible = true;
@@ -75,6 +85,7 @@ namespace quanlydangvien
             labeltb.Visible = false;
             labeltb.Text = "Điền đầy đủ thông tin!";
             labeltb.ForeColor = Color.Red;
+            labelmkmoi.Visible = false;
         
         }
 

@@ -109,6 +109,7 @@
             // textBoxtaikhoan
             // 
             this.textBoxtaikhoan.Location = new System.Drawing.Point(358, 240);
+            this.textBoxtaikhoan.MaxLength = 50;
             this.textBoxtaikhoan.Name = "textBoxtaikhoan";
             this.textBoxtaikhoan.Size = new System.Drawing.Size(141, 20);
             this.textBoxtaikhoan.TabIndex = 7;
@@ -117,6 +118,7 @@
             // textBoxmatkhau
             // 
             this.textBoxmatkhau.Location = new System.Drawing.Point(358, 281);
+            this.textBoxmatkhau.MaxLength = 50;
             this.textBoxmatkhau.Name = "textBoxmatkhau";
             this.textBoxmatkhau.PasswordChar = '*';
             this.textBoxmatkhau.Size = new System.Drawing.Size(141, 20);

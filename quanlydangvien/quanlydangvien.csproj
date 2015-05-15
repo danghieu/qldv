@@ -92,6 +92,12 @@
     <Compile Include="Formthemchibo.Designer.cs">
       <DependentUpon>Formthemchibo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formthemnguoidung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formthemnguoidung.Designer.cs">
+      <DependentUpon>Formthemnguoidung.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formtimkiem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formthemchibo.resx">
       <DependentUpon>Formthemchibo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formthemnguoidung.resx">
+      <DependentUpon>Formthemnguoidung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formtimkiem.resx">
       <DependentUpon>Formtimkiem.cs</DependentUpon>

@@ -40,6 +40,7 @@
             this.labelmatkhaucu = new System.Windows.Forms.Label();
             this.labelxacnhan = new System.Windows.Forms.Label();
             this.labeltb = new System.Windows.Forms.Label();
+            this.labelmkmoi = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -123,7 +124,7 @@
             this.buttonhuy.Name = "buttonhuy";
             this.buttonhuy.Size = new System.Drawing.Size(94, 35);
             this.buttonhuy.TabIndex = 7;
-            this.buttonhuy.Text = "Hủy";
+            this.buttonhuy.Text = "Hủy bỏ";
             this.buttonhuy.UseVisualStyleBackColor = false;
             this.buttonhuy.Click += new System.EventHandler(this.buttonhuy_Click);
             // 
@@ -160,11 +161,23 @@
             this.labeltb.TabIndex = 9;
             this.labeltb.Text = "Điền đầy đủ thông tin !!";
             // 
+            // labelmkmoi
+            // 
+            this.labelmkmoi.AutoSize = true;
+            this.labelmkmoi.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelmkmoi.ForeColor = System.Drawing.Color.Red;
+            this.labelmkmoi.Location = new System.Drawing.Point(376, 186);
+            this.labelmkmoi.Name = "labelmkmoi";
+            this.labelmkmoi.Size = new System.Drawing.Size(166, 15);
+            this.labelmkmoi.TabIndex = 10;
+            this.labelmkmoi.Text = "Bạn chưa nhập mật khẩu mới";
+            // 
             // Formdoimatkhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 351);
+            this.Controls.Add(this.labelmkmoi);
             this.Controls.Add(this.labeltb);
             this.Controls.Add(this.labelxacnhan);
             this.Controls.Add(this.labelmatkhaucu);
@@ -199,5 +212,6 @@
         private System.Windows.Forms.Label labelmatkhaucu;
         private System.Windows.Forms.Label labelxacnhan;
         private System.Windows.Forms.Label labeltb;
+        private System.Windows.Forms.Label labelmkmoi;
     }
 }

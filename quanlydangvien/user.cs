@@ -12,6 +12,7 @@ namespace quanlydangvien
         private string matkhau;
         private string hoten;
         private int capdo;
+        private string thongtin;
 
         database db = new database();
         public string Taikhoan
@@ -23,6 +24,17 @@ namespace quanlydangvien
             set
             {
                 taikhoan = value;
+            }
+        }
+        public string Thongtin
+        {
+            get
+            {
+                return thongtin;
+            }
+            set
+            {
+                thongtin = value;
             }
         }
         public string Matkhau
@@ -58,17 +70,52 @@ namespace quanlydangvien
                 capdo = value;
             }
         }
-        public vanphongchibo(string tk, string mk, string ht, int cd)
+        public vanphongchibo(string tk, string mk, string ht, int cd, string tt)
         {
             taikhoan = tk;
             matkhau = mk;
             hoten = ht;
             capdo = cd;
+            thongtin = tt;
+        }
+        public vanphongchibo(string tk)
+        {
+            taikhoan = tk;
+            
         }
         public bool DoiMatKhau()
         {
             return db.doimatkhau(this);
             
+        }
+        public bool ktttuser() {
+
+            return db.kttontaiuser(this);
+        }
+        public bool themuser()
+        {
+            if (!ktttuser())
+            {
+                db.themuser(this);
+                return true;
+            }
+            return false;
+
+
+        }
+        public bool suauser() {
+            if (db.suauser(this)) {
+                return true;
+            }
+            return false;
+        }
+        public bool xoauser()
+        {
+            if (db.xoauser(this))
+            {
+                return true;
+            }
+            return false;
         }
         public void Thoat()
         {
@@ -76,9 +123,9 @@ namespace quanlydangvien
         }
     }
 
-     class vanphongdanguy : vanphongchibo
+     public class vanphongdanguy : vanphongchibo
     {
-        public vanphongdanguy(string taikhoan,string matkhau,string hoten,int capdo) :base(taikhoan,matkhau,hoten,capdo) { 
+        public vanphongdanguy(string taikhoan,string matkhau,string hoten,int capdo,string thongtin) :base(taikhoan,matkhau,hoten,capdo,thongtin) { 
         
         }
         public void QuanLyCB() { 

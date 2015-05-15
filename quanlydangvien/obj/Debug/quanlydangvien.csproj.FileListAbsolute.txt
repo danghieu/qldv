@@ -49,3 +49,4 @@ F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.csproj.GenerateResource
 F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.Frm_danhsachdangvien.resources
 F:\php\qldv\qldv\quanlydangvien\obj\Debug\RdlCompile.cache
 F:\php\qldv\qldv\quanlydangvien\obj\Debug\RdlCompile.compiled
+F:\php\qldv\qldv\quanlydangvien\obj\Debug\quanlydangvien.Formthemnguoidung.resources

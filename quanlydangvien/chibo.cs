@@ -49,9 +49,9 @@ namespace quanlydangvien
             }
             return false;
         }
-        public void suachibo()
+        public bool suachibo()
         {
-            db.suachibo(this);
+            return db.suachibo(this);
         }
         public bool ktttchibo() {
             return db.kttontaichibo(this);

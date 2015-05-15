@@ -28,30 +28,46 @@ namespace quanlydangvien
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bool trongtk=false;
+            bool trongmk = false;
             vanphongchibo curuser = db.checklogin(textBoxtaikhoan.Text, textBoxmatkhau.Text);
             if (textBoxtaikhoan.Text == "")
             {
                 labelthongbaotaikhoan.Visible = true;
+                trongtk = true;
             }
-            else if (textBoxmatkhau.Text == "")
+            else {
+                labelthongbaotaikhoan.Visible = false;
+                trongtk = false;
+            }
+             if (textBoxmatkhau.Text == "")
             {
                 labelthongbaomatkhau.Visible = true;
+                 trongmk =true;
             }
-            else if (curuser != null)
-            {
+             else
+             {
+                 labelthongbaomatkhau.Visible = false;
+                 trongmk = false;
+             }
+             if (!trongmk && !trongtk) {
+                 if (curuser != null)
+                 {
 
-                this.Hide();
-                formhethongquanly htql = new formhethongquanly(curuser);
-                htql.Show();
-            }
-            else labelthongbao.Visible = true;
+                     this.Hide();
+                     formhethongquanly htql = new formhethongquanly(curuser);
+                     htql.Show();
+                 }
+                 else labelthongbao.Visible = true;
+             }
+              
 
             
         }
 
         private void linkLabelquenmatkhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("Vui lòng liên hệ văn phòng Đảng ủy để lấy lại tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Vui lòng liên hệ văn phòng Đảng ủy để lấy lại Mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

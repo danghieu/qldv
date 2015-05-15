@@ -379,13 +379,14 @@
             // 
             this.comboBoxgioitinh.FormattingEnabled = true;
             this.comboBoxgioitinh.Items.AddRange(new object[] {
-            "Đảng Viên Chính Thức",
-            "Đảng Viên Dự Bị"});
+            "Nam",
+            "Nữ"});
             this.comboBoxgioitinh.Location = new System.Drawing.Point(473, 85);
             this.comboBoxgioitinh.Name = "comboBoxgioitinh";
             this.comboBoxgioitinh.Size = new System.Drawing.Size(186, 21);
             this.comboBoxgioitinh.TabIndex = 1;
             this.comboBoxgioitinh.Text = "Nam";
+            this.comboBoxgioitinh.SelectedIndexChanged += new System.EventHandler(this.comboBoxgioitinh_SelectedIndexChanged);
             // 
             // comboBoxtongiao
             // 

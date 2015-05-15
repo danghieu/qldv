@@ -30,7 +30,11 @@ namespace quanlydangvien
 
                 textBoxsothedv.Text = dvr.Cells["MaDV"].Value.ToString();
                 textBoxten.Text = dvr.Cells["hoten"].Value.ToString();
-                comboBoxtrangthai.Text = dvr.Cells["tinhtrangDV"].Value.ToString();
+                if (dvr.Cells["tinhtrangDV"].Value.ToString() == "DVCT")
+                    comboBoxtrangthai.Text = "Đảng Viên Chính Thức";
+                else {
+                    comboBoxtrangthai.Text = "Đảng Viên Dự Bị";
+                }
                 textBoxsolylich.Text = dvr.Cells["solylich"].Value.ToString();
                 textBoxcmnd.Text = dvr.Cells["CMND"].Value.ToString();
                 dateTimePickerngaysinh.Value = (DateTime)dvr.Cells["ngaysinh"].Value;
@@ -78,19 +82,26 @@ namespace quanlydangvien
 
         private void buttonluu_Click(object sender, EventArgs e)
         {   
-
-
+            
             try{
                 int cmnd = int.Parse(textBoxcmnd.Text);
                 }
             catch{
                 MessageBox.Show(null, "Chứng minh nhân dân chưa đúng định dang!", "Cảnh Báo", MessageBoxButtons.OK);
             }
+            string trangthai;
+            if (comboBoxtrangthai.Text == "Đảng Viên Chính Thức")
+                trangthai= "DVCT";
+            else
+            {
+                trangthai = "DVDB";
+            }
             dangvien dv = new dangvien(
                 image,
                 textBoxsothedv.Text,
                 textBoxten.Text,
-                comboBoxtrangthai.Text,
+
+                trangthai,
                 textBoxsolylich.Text,
                 
                 int.Parse(textBoxcmnd.Text),
@@ -121,13 +132,18 @@ namespace quanlydangvien
                     MessageBox.Show(null, "Đảng Viên đã tồn tại", "Cảnh báo", MessageBoxButtons.OK);
                 }
                 else {
-                    this.Close();
+                    if (MessageBox.Show(null, "Bạn muốn tiếp tục thêm Đảng viên không?", "Nhắc nhở", MessageBoxButtons.YesNoCancel) == DialogResult.No)
+                    {
+                        Close();
+                    }
                 }
             }
             else {
                 dv.suadangvien();
             
             }
+
+            
             
         }
 
@@ -193,6 +209,11 @@ namespace quanlydangvien
         private void comboBoxchibo_SelectedIndexChanged(object sender, EventArgs e)
         {
              cbselect = new chibo(((chibo)comboBoxchibo.SelectedItem).MaCB, ((chibo)comboBoxchibo.SelectedItem).TenCB);
+
+        }
+
+        private void comboBoxgioitinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

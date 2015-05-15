@@ -14,7 +14,8 @@ namespace quanlydangvien
     {
         DataSet ds = new DataSet();
         database db = new database();
-        public Formthemchibo(string text, DataGridViewRow dvr)
+        DataGridViewRow drv= new DataGridViewRow();
+        public Formthemchibo(string text)
         {
             InitializeComponent();
             ds = db.laydanhsachchibo();
@@ -22,10 +23,12 @@ namespace quanlydangvien
             dataGridViewds.Columns[0].HeaderText = "Mã Chi Bộ";
             dataGridViewds.Columns[1].HeaderText = "Tên Chi Bộ";
             Text = text;
+            labeltb.Visible = false;
+
+            buttonxoa.Enabled = false;
             if (text=="SỬA CHI BỘ") {
                 labelthemchibo.Text = text;
-                textBoxmachibo.Text = dvr.Cells["MaCB"].Value.ToString();
-                textBoxtenchibo.Text = dvr.Cells["TenCB"].Value.ToString();
+                buttoncapnhat.Text = "Cập nhật";
             }
 
         }
@@ -40,18 +43,74 @@ namespace quanlydangvien
             chibo cb = new chibo(textBoxmachibo.Text, textBoxtenchibo.Text);
             if (Text == "SỬA CHI BỘ")
             {
-                
-                cb.suachibo();
+                if (cb.suachibo())
+                {
+                    loaddschibo();
+                    labeltb.Visible = true;
+                    labeltb.Text = "Cập nhật Thành Công";
+                    labeltb.ForeColor = Color.Green;
+                }
+
+
+                else {
+                    labeltb.Visible = true;
+                    labeltb.Text = "Lỗi Hệ Thống!";
+                    labeltb.ForeColor = Color.Red;
+                } 
             }
             else {
                 if (cb.themchibo())
                 {
-                    this.Close();
+                    labeltb.Visible = true;
+                    labeltb.Text = "Thêm Thành Công";
+                    labeltb.ForeColor = Color.Green;
+                    if (MessageBox.Show(null, "Bạn muốn tiếp tục thêm Đảng viên không?", "Nhắc nhở", MessageBoxButtons.YesNoCancel) == DialogResult.No)
+                    {
+                        Close();
+                    }
                 }
                 else {
+
                     MessageBox.Show(null, "Chi Bộ đã tồn tại", "Cảnh báo", MessageBoxButtons.OK);
                 }
                 
+            }
+        }
+        private void loaddschibo()
+        {
+            ds = db.laydanhsachchibo();
+            dataGridViewds.DataSource = ds.Tables[0];
+        }
+
+        private void dataGridViewds_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewds.SelectedRows.Count > 0)
+            {
+                buttonxoa.Enabled = true;
+                if (Text == "SỬA CHI BỘ")
+                {
+                    drv = dataGridViewds.SelectedRows[0];
+                    textBoxmachibo.Text = drv.Cells[0].Value.ToString();
+                    textBoxtenchibo.Text = drv.Cells[1].Value.ToString();
+                }
+                
+            }
+            else {
+                buttonxoa.Enabled = false;
+            }
+        }
+
+        private void buttonxoa_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewds.SelectedRows.Count > 0)
+            {
+
+                if (MessageBox.Show(null, "Bạn có muốn xóa không!", "Cảnh Báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                        db.xoachibo(dataGridViewds.SelectedRows[0]);
+                        loaddschibo();
+                    
+                }
             }
         }
     }
